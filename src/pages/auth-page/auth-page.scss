@@ -1,0 +1,159 @@
+@import "/public/common-styles.scss";
+
+.main {
+  padding: 70px 0 80px;
+  background: url("img/auth-main-banner.svg") no-repeat 8% 70%;
+
+  @media (max-width: 1050px) {
+    padding: 30px 0 350px;
+    background: url("img/auth-main-banner.svg") no-repeat 8% 100%;
+  }
+
+  &_banner {
+    display: flex;
+    justify-content: flex-start;
+
+    @media (max-width: 1050px) {
+      flex-direction: column;
+      gap: 125px;
+    }
+
+    &-title {
+      font-family: "Ferry", sans-serif;
+      font-weight: 700;
+      font-size: 40px;
+      max-width: 750px;
+
+      @media (max-width: 1150px) {
+        font-size: 30px;
+      }
+      @media (max-width: 500px) {
+        font-size: 22px;
+      }
+    }
+
+    &-form {
+      position: relative;
+      @include base-card;
+      max-width: 430px;
+      margin-left: 70px;
+
+      @media (max-width: 1050px) {
+        margin-left: 0;
+        padding: 15px;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        background-image: url("img/auth-main-form-lock.svg");
+        top: -10%;
+        left: -10%;
+        width: 75px;
+        height: 92px;
+        background-size: cover;
+
+        @media (max-width: 1050px) {
+          top: -15%;
+          left: 25%;
+        }
+      }
+
+      &-header {
+        @include flex-space-between;
+        gap: 15px;
+
+        &-login {
+          width: 35%;
+        }
+
+        &-signin {
+          width: 60%;
+        }
+
+        &-login,
+        &-signin {
+          font-family: "Inter", sans-serif;
+          border: none;
+          border-bottom: $light-grey solid 2px;
+          background-color: transparent;
+          font-size: 16px;
+          color: $light-grey;
+          font-weight: 400;
+          padding: 5px 10px;
+          cursor: pointer;
+
+          @media (max-width: 1050px) {
+            font-size: 14px;
+          }
+
+          &.active {
+            color: $dark-green;
+            border-bottom: $dark-green solid 2px;
+          }
+        }
+
+        &-login,
+        &-signin {
+          position: relative;
+        }
+      }
+
+      &-body {
+        display: flex;
+        flex-direction: column;
+        font-size: 16px;
+        color: #949494;
+        margin-top: 40px;
+
+        @media (max-width: 1050px) {
+          font-size: 14px;
+        }
+
+        input {
+          margin-top: 15px;
+          margin-bottom: 20px;
+          max-width: 380px;
+          height: 43px;
+          border: 1px solid $light-grey;
+          border-radius: 5px;
+          padding: 5px;
+
+          &:focus,
+          &:active {
+            border-color: $light-grey;
+            outline: none;
+          }
+        }
+
+        button {
+          @include base-button(22px, $white, $violet);
+          margin-top: 10px;
+          margin-bottom: 15px;
+
+          @media (max-width: 1050px) {
+            @include base-button(20px, $white, $violet);
+          }
+        }
+
+        a {
+          align-self: center;
+          color: #5970ff;
+          text-decoration: underline;
+          margin-bottom: 30px;
+        }
+
+        &-login-via-list {
+          display: flex;
+          gap: 10px;
+          padding: 15px 0 15px;
+
+          @media (max-width: 500px) {
+            gap: 2px;
+          }
+        }
+      }
+    }
+  }
+}

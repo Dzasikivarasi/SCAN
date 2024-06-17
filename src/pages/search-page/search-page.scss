@@ -1,0 +1,219 @@
+@import "/public/common-styles.scss";
+
+.main {
+  padding: 70px 0 65px;
+  background: url("img/search_banner-folder.svg") no-repeat 95% 15%,
+    url("img/search_banner-file.svg") no-repeat 68% 20%,
+    url("img/search_banner.svg") no-repeat 100% 85%;
+
+  @media (max-width: 1400px) {
+    padding: 70px 0 550px;
+    background: url("img/search_banner-folder.svg") no-repeat 95% 9%,
+      url("img/search_banner-file.svg") no-repeat 68% 13%,
+      url("img/search_banner.svg") no-repeat 30% 95%;
+  }
+
+  @media (max-width: 890px) {
+    padding: 20px 0 550px;
+    background: url("img/search_banner-file.svg") no-repeat 100% 7%,
+      url("img/search_banner.svg") no-repeat 30% 95%;
+  }
+
+  @media (max-width: 500px) {
+    padding: 20px 0 510px;
+    background: url("img/search_banner-file.svg") no-repeat 100% 9%,
+      url("img/search_banner.svg") no-repeat 30% 100%;
+    background-size: 20%, 100%;
+  }
+
+  @media (max-width: 420px) {
+    padding: 20px 0 450px;
+  }
+
+  &_title {
+    font-family: "Ferry", sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    max-width: 630px;
+
+    @media (max-width: 450px) {
+      font-size: 28px;
+    }
+  }
+
+  &_description {
+    font-size: 20px;
+    margin: 25px 0 45px;
+
+    @media (max-width: 450px) {
+      font-size: 18px;
+    }
+  }
+
+  &_search {
+    @include base-card;
+    @include flex-space-between;
+    gap: 10px;
+    max-width: 872px;
+    padding: 20px 40px;
+
+    @media (max-width: 800px) {
+      flex-direction: column;
+    }
+
+    @media (max-width: 500px) {
+      padding: 15px;
+    }
+
+    &-form {
+      display: flex;
+      flex-direction: column;
+
+      input,
+      select {
+        margin: 20px 0 30px;
+        max-width: 242px;
+        height: 43px;
+        border: 1px solid $light-grey;
+        border-radius: 5px;
+        padding: 10px;
+
+        @media (max-width: 800px) {
+          width: 100%;
+          max-width: none;
+
+          input {
+            margin: 20px 0px 0px;
+          }
+        }
+
+        &::placeholder {
+          color: $light-grey;
+          font-size: 14px;
+        }
+
+        &:focus,
+        &:active {
+          border-color: $light-grey;
+          outline: none;
+        }
+      }
+
+      &-dropdown {
+        display: flex;
+        flex-direction: column;
+
+        &-list {
+          position: relative;
+          padding: 10px;
+          font-size: 14px;
+          max-width: 242px;
+        }
+      }
+    }
+
+    &-date {
+      display: flex;
+      gap: 20px;
+
+      @media (max-width: 800px) {
+        flex-direction: column;
+        gap: 0px;
+
+        input {
+          margin: 20px 0px 0px;
+        }
+      }
+
+      &-from,
+      &-to {
+        position: relative;
+        width: 175px;
+      }
+    }
+
+    &-right {
+      display: flex;
+      flex-direction: column;
+      max-width: 405px;
+
+      &-checkbox {
+        color: $light-grey;
+        font-size: 18px;
+
+        @media (max-width: 800px) {
+          display: none;
+        }
+
+        &-label {
+          display: flex;
+          align-items: center;
+          margin-bottom: 15px;
+
+          span {
+            min-width: 250px;
+          }
+        }
+
+        input[type="checkbox"] {
+          position: relative;
+          width: 20px;
+          height: 20px;
+          border: 1px solid $light-grey;
+          border-radius: 0;
+          margin-right: 15px;
+          padding: 0;
+          width: 20px;
+          height: 20px;
+
+          &:checked {
+            border-color: $black;
+
+            &::before {
+              position: absolute;
+              content: "";
+              background-image: url("img/search_checkbox.svg");
+              background-repeat: no-repeat;
+              top: 10%;
+              left: 10%;
+              width: 20px;
+              height: 20px;
+            }
+          }
+
+          &:checked + .main_search-right-checkbox-option {
+            color: $black;
+          }
+        }
+      }
+
+      &-submit {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-end;
+        margin-top: 100px;
+        width: 100%;
+
+        @media (max-width: 800px) {
+          margin-top: 40px;
+        }
+
+        button {
+          @include base-button(22px, $white, $violet);
+          width: 100%;
+        }
+
+        &-description {
+          font-size: 14px;
+          color: $light-grey;
+          margin-top: 10px;
+          align-self: flex-end;
+
+          @media (max-width: 800px) {
+            align-self: flex-start;
+          }
+        }
+      }
+    }
+  }
+}

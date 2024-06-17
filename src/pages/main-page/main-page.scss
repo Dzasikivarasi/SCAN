@@ -1,0 +1,306 @@
+@import "/public/common-styles.scss";
+
+.main {
+  padding-top: 70px;
+  width: 100%;
+  @media (max-width: 600px) {
+    padding-top: 20px;
+  }
+
+  &_banner {
+    padding-bottom: 100px;
+    @include flex-space-between;
+
+    @media (max-width: 1140px) {
+      flex-direction: column;
+      align-content: flex-start;
+
+      img {
+        @media (max-width: 1140px) {
+          margin-top: 20px;
+        }
+      }
+    }
+
+    @media (max-width: 600px) {
+      padding-bottom: 55px;
+    }
+
+    &-left {
+      &-title {
+        font-family: "Ferry", sans-serif;
+        font-weight: 700;
+        font-size: 60px;
+        text-transform: uppercase;
+        max-width: calc(100% * 0.51);
+        min-width: 480px;
+
+        @media (max-width: 600px) {
+          font-size: 28px;
+          min-width: 300px;
+        }
+      }
+
+      &-description {
+        max-width: 535px;
+        font-size: 20px;
+        padding-top: 20px;
+        padding-bottom: 70px;
+
+        @media (max-width: 600px) {
+          font-size: 18px;
+          padding-bottom: 32px;
+        }
+      }
+      &-button {
+        @include base-button(22px, $white, $violet);
+        height: 60px;
+        width: 335px;
+
+        @media (max-width: 600px) {
+          font-size: 20px;
+          width: 100%;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+
+  &_privilege {
+    padding-bottom: 750px;
+    background: url("img/main_middle-2.svg") no-repeat 0% 80%;
+
+    @media (max-width: 600px) {
+      padding-bottom: 650px;
+      background: url("img/main_middle.svg") no-repeat 0% 80%;
+      background-size: 100%;
+    }
+
+    @media (max-width: 500px) {
+      padding-bottom: 450px;
+      background: url("img/main_middle.svg") no-repeat 0% 90%;
+      background-size: 100%;
+    }
+
+    &-title {
+      font-family: "Ferry";
+      font-size: 45px;
+      padding-bottom: 70px;
+
+      @media (max-width: 600px) {
+        padding-bottom: 30px;
+        font-size: 28px;
+      }
+    }
+    &-slider {
+      @include flex-space-between;
+      align-items: center;
+      overflow: hidden;
+      width: 100%;
+
+      &-arrow-left {
+        @include arrow-button("img/main_arrow-left.svg");
+        margin-right: 10px;
+      }
+
+      &-arrow-right {
+        @include arrow-button("img/main_arrow-right.svg");
+        margin-left: 10px;
+      }
+
+      &-list {
+        @include flex-space-between();
+        width: calc(100% - 100px);
+        padding: 15px 0px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+
+        &-item {
+          @include base-card;
+          flex: 0 0 calc((100% - 90px) / 3);
+          background: url("img/main_privilege-1.svg") no-repeat 5% 15%;
+          width: calc(100% / 3);
+          min-width: 225px;
+          padding-top: 110px;
+          height: auto;
+          min-height: 225px;
+          margin-right: 15px;
+          margin-left: 15px;
+
+          @media (max-width: 990px) {
+            flex: 1;
+            width: calc(100% - 30px);
+            min-width: calc(100% - 30px);
+          }
+        }
+      }
+    }
+  }
+  &_tarif {
+    padding-bottom: 120px;
+    @media (max-width: 600px) {
+      padding-bottom: 40px;
+    }
+
+    &-title {
+      font-family: "Ferry";
+      font-size: 45px;
+      padding-bottom: 70px;
+
+      @media (max-width: 600px) {
+        font-size: 28px;
+        padding-bottom: 30px;
+      }
+    }
+
+    &-list {
+      @include flex-space-between;
+      min-height: 514px;
+      height: auto;
+      gap: 40px;
+
+      @media (max-width: 1400px) {
+        flex-wrap: wrap;
+        max-width: 585px;
+      }
+
+      &-item {
+        @include base-card;
+        padding: 0;
+        width: calc((100% - 80px) / 0.3);
+
+        &-title {
+          background: url("img/main_tarif-1.svg") no-repeat 95% 20%;
+          padding: 30px;
+          border-top-left-radius: 7px;
+          border-top-right-radius: 7px;
+          // Передать этот стиль в реакт
+          background-color: $yellow;
+
+          &-type {
+            font-weight: 500;
+            font-size: 30px;
+            padding-bottom: 10px;
+
+            @media (max-width: 600px) {
+              font-size: 20px;
+            }
+          }
+        }
+        &-price {
+          position: relative;
+          padding: 30px 30px 0px;
+
+          &-count {
+            display: flex;
+            justify-content: flex-start;
+            gap: 20px;
+            font-weight: 500;
+            white-space: nowrap;
+
+            &-origin {
+              font-size: 30px;
+            }
+            &-discount {
+              color: $dark-grey;
+              font-size: 30px;
+              text-decoration: line-through;
+            }
+          }
+
+          &-installment {
+            font-weight: 400;
+            padding-top: 10px;
+          }
+        }
+
+        &-points {
+          padding: 50px 30px;
+
+          &-title {
+            font-weight: 500;
+            font-size: 20px;
+
+            @media (max-width: 600px) {
+              font-size: 18px;
+            }
+          }
+
+          &-list {
+            padding-top: 10px;
+
+            li {
+              position: relative;
+              padding-top: 5px;
+              padding-left: 30px;
+              white-space: nowrap;
+
+              @media (max-width: 600px) {
+                font-size: 16px;
+                white-space: wrap;
+              }
+
+              &::before {
+                content: "";
+                position: absolute;
+                background-image: url("img/main_tarif-point.svg");
+                top: 20%;
+                left: 0;
+                width: 20px;
+                height: 20px;
+                background-size: cover;
+              }
+            }
+          }
+        }
+
+        &-button {
+          @include base-button(20px, $white, $violet);
+          margin: 0px 30px 25px;
+          width: calc(100% - 60px);
+
+          @media (max-width: 600px) {
+            font-size: 18px;
+          }
+        }
+
+        &-button.active {
+          @include base-button(20px, $black, $dark-grey);
+        }
+      }
+
+      &-item.active {
+        border: solid 2px $yellow;
+      }
+    }
+
+    &-active {
+      position: absolute;
+      top: 10%;
+      left: 70%;
+      background-color: $blue;
+      color: $white;
+      font-size: 14px;
+      border: none;
+      border-radius: 20px;
+      width: 135px;
+      padding: 5px 10px;
+
+      @media (max-width: 510px) {
+        top: 5%;
+        font-size: 12px;
+        width: 120px;
+      }
+
+      @media (max-width: 450px) {
+        left: 60%;
+      }
+
+      p {
+        text-align: center;
+        width: auto;
+      }
+    }
+  }
+}

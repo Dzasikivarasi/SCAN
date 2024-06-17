@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image" href="public/img/icon.png" />
+    <link rel="stylesheet" href="public/common-styles.scss" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SCAN</title>
+  </head>
+  <body>
+    <!-- <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script> -->
+    <div class="container">
+      <header class="header">
+        <div class="header_logo">
+          <img src="public/img/header-logo-color.svg" alt="логотип" />
+        </div>
+        <div class="header_menu">
+          <nav class="header_menu-navigation">
+            <ul class="header_menu-navigation-list">
+              <li class="header_menu-navigation-list-item">
+                <a href="#">Главная</a>
+              </li>
+              <li class="header_menu-navigation-list-item">
+                <a href="#">Тарифы</a>
+              </li>
+              <li class="header_menu-navigation-list-item">
+                <a href="#">FAQ</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="header_menu-limits">
+            <p class="header_menu-limits-used">
+              Использовано компаний <span>34</span>
+            </p>
+            <p class="header_menu-limits-limit">
+              Лимит по компаниям <span>100</span>
+            </p>
+          </div>
+          <div class="header_menu-login">
+            <a class="header_menu-login-signin" href="#">Зарегистрироваться</a>
+            <button class="header_menu-login-button">Войти</button>
+          </div>
+          <div class="header_menu-user hidden">
+            <div class="header_menu-user-name">
+              <p>Алексей А.</p>
+              <a href="#">Выйти</a>
+            </div>
+            <img
+              class="header_menu-user-foto"
+              src="public/img/header-empty-user.png"
+              alt="Фото пользователя"
+              width="32"
+              height="32"
+            />
+          </div>
+
+          <div class="header_menu-burger">
+            <svg
+              class="header_menu-burger-open"
+              width="30"
+              height="25"
+              viewBox="0 0 30 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="30" height="5" fill="#029491" />
+              <rect y="10" width="30" height="5" fill="#029491" />
+              <rect y="20" width="30" height="5" fill="#029491" />
+            </svg>
+            <div class="header_menu-burger-dropdown hidden">
+              <div class="header_menu-burger-dropdown-top">
+                <img
+                  class="header_menu-burger-dropdown-logo"
+                  src="public/img/header-logo-white.svg"
+                  alt="логотип"
+                />
+                <svg
+                  class="header_menu-burger-dropdown-close"
+                  width="25"
+                  height="25"
+                  viewBox="0 0 25 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="3.53613"
+                    width="30"
+                    height="5"
+                    transform="rotate(45 3.53613 0)"
+                    fill="white"
+                  />
+                  <rect
+                    x="24.7485"
+                    y="3.53564"
+                    width="30"
+                    height="5"
+                    transform="rotate(135 24.7485 3.53564)"
+                    fill="white"
+                  />
+                </svg>
+              </div>
+              <ul class="header_menu-burger-dropdown-menu">
+                <li class="header_menu-burger-dropdown-menu-item">
+                  <a href="#">Главная</a>
+                </li>
+                <li class="header_menu-burger-dropdown-menu-item">
+                  <a href="#">Тарифы</a>
+                </li>
+                <li class="header_menu-burger-dropdown-menu-item">
+                  <a href="#">FAQ</a>
+                </li>
+              </ul>
+              <div class="header_menu-burger-dropdown-menu-login">
+                <a
+                  class="header_menu-burger-dropdown-menu-login-signin"
+                  href="#"
+                  >Зарегистрироваться</a
+                >
+                <button class="header_menu-burger-dropdown-menu-login-button">
+                  Войти
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <h1 class="main_title">Найдите необходимые данные в пару кликов</h1>
+        <p class="main_description">
+          Задайте параметры поиска.<br />
+          Чем больше заполните, тем точнее поиск
+        </p>
+        <div class="main_search">
+          <form class="main_search-form">
+            <label for="inn">ИНН компании*</label>
+            <input type="text" id="inn" name="inn" placeholder="10 цифр" />
+
+            <div class="main_search-form-dropdown">
+              <label for="tonality">Тональность</label>
+              <select class="main_search-form-dropdown-list" id="tonality">
+                <option value="1">Позитивная</option>
+                <option value="2">Негативная</option>
+                <option value="3">Любая</option>
+              </select>
+            </div>
+
+            <label for="results-count">Количество документов в выдаче*</label>
+            <input
+              type="text"
+              id="results-count"
+              name="results-count"
+              placeholder="От 1 до 1000"
+              required
+            />
+
+            <label for="date-from date-to">Диапазон поиска*</label>
+            <div class="main_search-date">
+              <input
+                type="text"
+                id="date-from"
+                name="date-from"
+                placeholder="Дата начала"
+                class="main_search-date-from"
+                onfocus="this.type='date'"
+                onblur="this.type='text'"
+                required
+              />
+              <input
+                type="text"
+                id="date-to"
+                name="date-to"
+                placeholder="Дата конца"
+                class="main_search-date-to"
+                onfocus="this.type='date'"
+                onblur="this.type='text'"
+                required
+              />
+            </div>
+          </form>
+
+          <div class="main_search-right">
+            <ul class="main_search-right-checkbox">
+              <li class="main_search-right-checkbox-item">
+                <label class="main_search-right-checkbox-label">
+                  <input
+                    type="checkbox"
+                    class="main_search-right-checkbox-input"
+                  />
+                  <span class="main_search-right-checkbox-option"
+                    >Признак максимальной полноты</span
+                  >
+                </label>
+              </li>
+              <li class="main_search-right-checkbox-item">
+                <label class="main_search-right-checkbox-label">
+                  <input
+                    type="checkbox"
+                    class="main_search-right-checkbox-input"
+                  />
+                  <span class="main_search-right-checkbox-option"
+                    >Упоминания в бизнес-контексте</span
+                  >
+                </label>
+              </li>
+              <li class="main_search-right-checkbox-item">
+                <label class="main_search-right-checkbox-label">
+                  <input
+                    type="checkbox"
+                    class="main_search-right-checkbox-input"
+                  />
+                  <span class="main_search-right-checkbox-option"
+                    >Главная роль в публикации</span
+                  >
+                </label>
+              </li>
+              <li class="main_search-right-checkbox-item">
+                <label class="main_search-right-checkbox-label">
+                  <input
+                    type="checkbox"
+                    class="main_search-right-checkbox-input"
+                  />
+                  <span class="main_search-right-checkbox-option"
+                    >Публикации только с риск-факторами</span
+                  >
+                </label>
+              </li>
+              <li class="main_search-right-checkbox-item">
+                <label class="main_search-right-checkbox-label">
+                  <input
+                    type="checkbox"
+                    class="main_search-right-checkbox-input"
+                  />
+                  <span class="main_search-right-checkbox-option"
+                    >Включать технические новости рынков</span
+                  >
+                </label>
+              </li>
+              <li class="main_search-right-checkbox-item">
+                <label class="main_search-right-checkbox-label">
+                  <input
+                    type="checkbox"
+                    class="main_search-right-checkbox-input"
+                  />
+                  <span class="main_search-right-checkbox-option"
+                    >Включать анонсы и календари</span
+                  >
+                </label>
+              </li>
+              <li class="main_search-right-checkbox-item">
+                <label class="main_search-right-checkbox-label">
+                  <input
+                    type="checkbox"
+                    class="main_search-right-checkbox-input"
+                  />
+                  <span class="main_search-right-checkbox-option"
+                    >Включать сводки новостей</span
+                  >
+                </label>
+              </li>
+            </ul>
+            <div class="main_search-right-submit">
+              <button type="submit">Поиск</button>
+              <p class="main_search-right-submit-description">
+                * Обязательные к заполнению поля
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <div class="footer_logo">
+        <img src="public/img/header-logo-white.svg" alt="логотип" />
+      </div>
+      <div class="footer_info">
+        <div class="footer_info-contacts">
+          <p>г. Москва, Цветной б-р, 40</p>
+          <p>+7 495 771 21 11</p>
+          <p>info@skan.ru</p>
+        </div>
+        <p class="footer_info-copyright">Copyright. 2022</p>
+      </div>
+    </footer>
+  </body>
+</html>

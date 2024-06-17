@@ -1,0 +1,400 @@
+// Обнуление дефолтных стилей
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+// Базовые цвета
+$dark-green: #029491;
+$light-green: #7ce3e1;
+$bright-green: #8ac540;
+$violet: #5970ff;
+$blue: #3ba5e0;
+$yellow: #ffb64f;
+$dark-grey: #d2d2d2;
+$light-grey: #c7c7c7;
+$red: #ff5959;
+$black: #000000;
+$white: #ffffff;
+
+// Миксины
+@mixin flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin base-button($font-size, $font-color, $button-color) {
+  font-family: "Inter", sans-serif;
+  font-size: $font-size;
+  font-weight: 500;
+  color: $font-color;
+  background-color: $button-color;
+  border-radius: 5px;
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba($button-color, 0.8);
+  }
+
+  &:disabled {
+    background-color: rgba($button-color, 0.8);
+    cursor: not-allowed;
+  }
+}
+
+@mixin arrow-button($url) {
+  background: url($url) no-repeat center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+
+  &:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@mixin base-card() {
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+// Общие шрифты
+@font-face {
+  font-family: "Ferry";
+  src: url("fonts/ferry_black.woff2") format("woff2"),
+    url("fonts/ferry_black.woff") format("woff");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter-Regular.woff2") format("woff2"),
+    url("fonts/Inter-Regular.woff") format("woff");
+  font-weight: normal;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.container {
+  padding: 15px 60px 0px;
+  position: relative;
+
+  @media (max-width: 850px) {
+    padding: 15px;
+  }
+
+  @media (max-width: 400px) {
+    padding: 0px 15px;
+  }
+}
+
+// хэдер
+.header {
+  @include flex-space-between;
+  align-items: center;
+  width: 100%;
+
+  &_logo {
+    margin-right: 40px;
+
+    @media (max-width: 400px) {
+      width: 110px;
+      height: 110px;
+      margin-right: 25px;
+    }
+  }
+
+  &_menu {
+    @include flex-space-between;
+    align-items: center;
+    width: calc(100% * 0.59);
+
+    @media (max-width: 1440px) {
+      width: auto;
+    }
+
+    &-navigation-list {
+      @include flex-space-between;
+      gap: 50px;
+      margin-right: 40px;
+      margin-left: 40px;
+      font-size: 14px;
+
+      @media (max-width: 1050px) {
+        display: none;
+      }
+    }
+
+    &-login {
+      @include flex-space-between;
+      flex-wrap: nowrap;
+      align-items: center;
+
+      @media (max-width: 1050px) {
+        display: none;
+      }
+
+      &-signin {
+        position: relative;
+        color: $light-grey;
+        font-size: 14px;
+        margin-right: 40px;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          right: -20px;
+          transform: translateY(-50%);
+          width: 2px;
+          height: 26px;
+          background-color: $dark-green;
+        }
+      }
+      &-button {
+        @include base-button(14px, $black, $light-green);
+        padding: 5px 10px;
+      }
+    }
+
+    &-user {
+      @include flex-space-between;
+      align-items: center;
+      gap: 5px;
+
+      &-name {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        flex-wrap: nowrap;
+
+        p {
+          font-size: 14px;
+          color: #4d4d4d;
+          white-space: nowrap;
+        }
+
+        a {
+          font-size: 10px;
+          color: #999999;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    &-limits {
+      background-color: #f4f4f4;
+      border-radius: 5px;
+      padding: 15px 10px;
+      font-size: 10px;
+      color: #999999;
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      flex-wrap: nowrap;
+      gap: 5px;
+      white-space: nowrap;
+      margin-right: 40px;
+
+      @media (max-width: 400px) {
+        font-size: 8px;
+        padding: 10px 5px;
+        margin-right: 20px;
+      }
+
+      &-used span {
+        font-weight: 700;
+        font-size: 14px;
+        color: $black;
+      }
+
+      &-limit span {
+        font-weight: 700;
+        font-size: 14px;
+        color: $bright-green;
+      }
+    }
+
+    &-burger-open {
+      @media (min-width: 1050px) {
+        display: none;
+      }
+    }
+
+    &-burger-dropdown {
+      padding: 15px 60px;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: $dark-green;
+      width: 100vw;
+      height: 100vh;
+      transition: transform 0.3s ease-in-out;
+      transform: translateX(100%);
+
+      @media (max-width: 850px) {
+        padding: 15px;
+      }
+
+      // Чтобы открыть меню-бургер, добавляем этот класс
+      &.opened {
+        transform: translateX(0);
+      }
+
+      &-top {
+        @include flex-space-between;
+        align-items: center;
+      }
+
+      &-menu {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        color: $white;
+
+        &-login {
+          margin-top: 75px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+
+          &-signin {
+            color: rgba($white, 0.5);
+          }
+
+          &-button {
+            @include base-button(20px, $black, $light-green);
+            font-weight: 500;
+            width: 70%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.main {
+  padding: 25px 0 110px;
+
+  &_banner {
+    @include flex-space-between;
+
+    &-title {
+      margin-top: 40px;
+      h1 {
+        margin-bottom: 35px;
+        font-family: "Ferry";
+        font-weight: 900px;
+        font-size: 40px;
+        max-width: 510px;
+      }
+
+      &-description {
+        font-size: 20px;
+        max-width: 450px;
+      }
+    }
+
+    img {
+      margin-right: 40px;
+    }
+  }
+
+  &_results {
+    &-title {
+      font-family: "Ferry";
+      font-weight: 900px;
+      font-size: 30px;
+    }
+
+    &-description {
+      margin: 15px 0px 25px;
+      color: #949494;
+    }
+
+    &-container {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      width: 100%;
+
+      &-table {
+        border: $dark-green solid 2px;
+        border-radius: 5px;
+        padding: 18px 18px 18px 28px;
+      }
+    }
+  }
+}
+
+// Футер
+.footer {
+  @include flex-space-between;
+  align-items: center;
+  background-color: $dark-green;
+  padding: 0px 60px;
+  color: $white;
+  font-weight: 300;
+
+  @media (max-width: 600px) {
+    margin-top: 40px;
+  }
+
+  @media (max-width: 850px) {
+    padding: 0px 15px;
+  }
+
+  &_info {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+    &-contacts {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    &-copyright {
+      padding-top: 20px;
+      font-size: 12px;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
