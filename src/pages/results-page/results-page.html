@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image" href="public/img/icon.png" />
+    <link rel="stylesheet" href="public/common-styles.scss" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SCAN</title>
+  </head>
+  <body>
+    <!-- <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script> -->
+    <div class="container">
+      <header class="header">
+        <div class="header_logo">
+          <img src="public/img/header-logo-color.svg" alt="логотип" />
+        </div>
+        <div class="header_menu">
+          <nav class="header_menu-navigation">
+            <ul class="header_menu-navigation-list">
+              <li class="header_menu-navigation-list-item">
+                <a href="#">Главная</a>
+              </li>
+              <li class="header_menu-navigation-list-item">
+                <a href="#">Тарифы</a>
+              </li>
+              <li class="header_menu-navigation-list-item">
+                <a href="#">FAQ</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="header_menu-limits">
+            <p class="header_menu-limits-used">
+              Использовано компаний <span>34</span>
+            </p>
+            <p class="header_menu-limits-limit">
+              Лимит по компаниям <span>100</span>
+            </p>
+          </div>
+          <div class="header_menu-login">
+            <a class="header_menu-login-signin" href="#">Зарегистрироваться</a>
+            <button class="header_menu-login-button">Войти</button>
+          </div>
+          <div class="header_menu-user hidden">
+            <div class="header_menu-user-name">
+              <p>Алексей А.</p>
+              <a href="#">Выйти</a>
+            </div>
+            <img
+              class="header_menu-user-foto"
+              src="public/img/header-empty-user.png"
+              alt="Фото пользователя"
+              width="32"
+              height="32"
+            />
+          </div>
+
+          <div class="header_menu-burger">
+            <svg
+              class="header_menu-burger-open"
+              width="30"
+              height="25"
+              viewBox="0 0 30 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="30" height="5" fill="#029491" />
+              <rect y="10" width="30" height="5" fill="#029491" />
+              <rect y="20" width="30" height="5" fill="#029491" />
+            </svg>
+            <div class="header_menu-burger-dropdown hidden">
+              <div class="header_menu-burger-dropdown-top">
+                <img
+                  class="header_menu-burger-dropdown-logo"
+                  src="public/img/header-logo-white.svg"
+                  alt="логотип"
+                />
+                <svg
+                  class="header_menu-burger-dropdown-close"
+                  width="25"
+                  height="25"
+                  viewBox="0 0 25 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="3.53613"
+                    width="30"
+                    height="5"
+                    transform="rotate(45 3.53613 0)"
+                    fill="white"
+                  />
+                  <rect
+                    x="24.7485"
+                    y="3.53564"
+                    width="30"
+                    height="5"
+                    transform="rotate(135 24.7485 3.53564)"
+                    fill="white"
+                  />
+                </svg>
+              </div>
+              <ul class="header_menu-burger-dropdown-menu">
+                <li class="header_menu-burger-dropdown-menu-item">
+                  <a href="#">Главная</a>
+                </li>
+                <li class="header_menu-burger-dropdown-menu-item">
+                  <a href="#">Тарифы</a>
+                </li>
+                <li class="header_menu-burger-dropdown-menu-item">
+                  <a href="#">FAQ</a>
+                </li>
+              </ul>
+              <div class="header_menu-burger-dropdown-menu-login">
+                <a
+                  class="header_menu-burger-dropdown-menu-login-signin"
+                  href="#"
+                  >Зарегистрироваться</a
+                >
+                <button class="header_menu-burger-dropdown-menu-login-button">
+                  Войти
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <section class="main_banner">
+          <div class="main_banner-title">
+            <h1>Ищем. Скоро будут результаты</h1>
+            <p class="main_banner-title-description">
+              Поиск может занять некоторое время, просим сохранять терпение.
+            </p>
+          </div>
+          <img src="public/img/results_banner.svg" alt="banner" />
+        </section>
+        <section class="main_results">
+          <h2 class="main_results-title">Общая сводка</h2>
+          <p class="main_results-description">Найдено 4 221 вариантов</p>
+          <div class="main_results-container">
+            <div class="main_results-container-arrow-left">
+              <img src="public/img/main_arrow-left.svg" alt="swipe left" />
+            </div>
+            <div class="main_results-container-table">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="main_results-container-table-title">Период</th>
+                    <td>10.09.2021</td>
+                    <td>13.09.2021</td>
+                    <td>17.09.2021</td>
+                    <td>20.09.2021</td>
+                    <td>12.10.2021</td>
+                    <td>15.10.2021</td>
+                    <td>16.10.2021</td>
+                    <td>17.10.2021</td>
+                    <td>17.10.2021</td>
+                    <td>17.10.2021</td>
+                  </tr>
+                  <tr>
+                    <th class="main_results-container-table-title">Всего</th>
+                    <td>5</td>
+                    <td>4</td>
+                    <td>6</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>9</td>
+                    <td>9</td>
+                  </tr>
+                  <tr>
+                    <th class="main_results-container-table-title">Риски</th>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>7</td>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="main_results-container-mobile-table">
+              <table>
+                <thead>
+                  <th class="main_results-container-mobile-table-title">
+                    Период
+                  </th>
+                  <th class="main_results-container-mobile-table-title">
+                    Всего
+                  </th>
+                  <th class="main_results-container-mobile-table-title">
+                    Риски
+                  </th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>17.10.2021</td>
+                    <td>5</td>
+                    <td>0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="main_results-container-arrow-right">
+              <img src="public/img/main_arrow-right.svg" alt="swipe right" />
+            </div>
+          </div>
+        </section>
+        <section class="main_articles">
+          <h2 class="main_articles-title">Список документов</h2>
+          <ul class="main_articles-list">
+            <li class="main_articles-list-item">
+              <div class="main_articles-list-item-header">
+                <p class="main_articles-list-item-header-date">13.09.2021</p>
+                <a class="main_articles-list-item-header-source" href="#"
+                  >Комсомольская правда KP.RU</a
+                >
+              </div>
+              <p class="main_articles-list-item-title">
+                Скиллфэктори - лучшая онлайн-школа для будущих айтишников
+              </p>
+              <div class="main_articles-list-item-type">
+                Технические новости
+              </div>
+              <div class="main_articles-list-item-banner">
+                <img
+                  class="main_articles-list-item-banner"
+                  src="public/img/results_articles-image-1.jpg"
+                  alt="Article illustration"
+                />
+              </div>
+              <p class="main_articles-list-item-text">
+                SkillFactory — школа для всех, кто хочет изменить свою карьеру и
+                жизнь. С 2016 года обучение прошли 20 000+ человек из 40 стран с
+                4 континентов, самому взрослому студенту сейчас 86 лет.
+                Выпускники работают в Сбере, Cisco, Bayer, Nvidia, МТС,
+                Ростелекоме, Mail.ru, Яндексе, Ozon и других топовых компаниях.
+                Принципы SkillFactory: акцент на практике, забота о студентах и
+                ориентир на трудоустройство. 80% обучения — выполнение
+                упражнений и реальных проектов. Каждого студента поддерживают
+                менторы, 2 саппорт-линии и комьюнити курса. А карьерный центр
+                помогает составить резюме, подготовиться к собеседованиям и
+                познакомиться с IT-рекрутерами.
+              </p>
+              <div class="main_articles-list-item-footer">
+                <button class="main_articles-list-item-footer-button">
+                  Читать в источнике
+                </button>
+                <p class="main_articles-list-item-footer-words">2 543 слова</p>
+              </div>
+            </li>
+            <li class="main_articles-list-item">
+              <div class="main_articles-list-item-header">
+                <p class="main_articles-list-item-header-date">13.09.2021</p>
+                <a class="main_articles-list-item-header-source" href="#"
+                  >VC.RU</a
+                >
+              </div>
+              <p class="main_articles-list-item-title">
+                Скиллфэктори - лучшая онлайн-школа для будущих айтишников
+              </p>
+              <div class="main_articles-list-item-type">
+                Технические новости
+              </div>
+              <div class="main_articles-list-item-banner">
+                <img
+                  src="public/img/results_articles-image-2.jpg"
+                  alt="Article illustration"
+                />
+              </div>
+              <p class="main_articles-list-item-text">
+                Кто такой Data Scientist и чем он занимается? Data Scientist —
+                это специалист, который работает с большими массивами данных,
+                чтобы с их помощью решить задачи бизнеса. Простой пример
+                использования больших данных и искусственного интеллекта — умные
+                ленты в социальных сетях. На основе ваших просмотров и лайков
+                алгоритм выдает рекомендации с контентом, который может быть вам
+                интересен. Эту модель создал и обучил дата-сайентист, и скорее
+                всего, не один. В небольших компаниях и стартапах дата-сайентист
+                делает все: собирает и очищает данные, создает математическую
+                модель для их анализа, тестирует ее и презентует готовое решение
+                бизнесу.
+              </p>
+              <div class="main_articles-list-item-footer">
+                <button class="main_articles-list-item-footer-button">
+                  Читать в источнике
+                </button>
+                <p class="main_articles-list-item-footer-words">2 543 слова</p>
+              </div>
+            </li>
+          </ul>
+          <button class="main_articles-load-button">Показать больше</button>
+        </section>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <div class="footer_logo">
+        <img src="public/img/header-logo-white.svg" alt="логотип" />
+      </div>
+      <div class="footer_info">
+        <div class="footer_info-contacts">
+          <p>г. Москва, Цветной б-р, 40</p>
+          <p>+7 495 771 21 11</p>
+          <p>info@skan.ru</p>
+        </div>
+        <p class="footer_info-copyright">Copyright. 2022</p>
+      </div>
+    </footer>
+  </body>
+</html>
