@@ -325,12 +325,12 @@ body {
   @include flex-space-between;
   align-items: center;
   background-color: $dark-green;
-  padding: 0px 60px;
+  padding: 25px 60px;
   color: $white;
   font-weight: 300;
 
   @media (max-width: 850px) {
-    padding: 0px 15px;
+    padding: 15px;
   }
 
   &_info {

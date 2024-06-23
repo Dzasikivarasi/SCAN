@@ -1,14 +1,14 @@
 import BurgerMenu from "./burger-menu/Burger-menu";
-import HeaderLogo from "./Header-logo";
 import Limits from "./Limits";
 import Login from "./Login";
 import Navigation from "./Navigation";
 import User from "./User";
+import Logo from "./Logo";
 
 export default function Header(): JSX.Element {
   return (
     <header className="header">
-      <HeaderLogo />
+      <Logo className="header_logo" url="public/img/header-logo-color.svg" />
       <div className="header_menu">
         <Navigation
           classList="header_menu-navigation-list"
