@@ -1,6 +1,6 @@
 import { useState } from "react";
-import BurgerDropdown from "./Burger-dropdown";
-import BurgerIcon from "./Burger-icon";
+import BurgerDropdown from "./burger-dropdown";
+import BurgerIcon from "./burger-icon";
 
 export default function BurgerMenu(): JSX.Element {
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);

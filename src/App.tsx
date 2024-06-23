@@ -1,13 +1,9 @@
-import { Footer } from "./components/footer/Footer";
-import Header from "./components/header/Header";
+import Layout from "./components/layout";
 
 export function App() {
   return (
-    <>
-      <div className="container">
-        <Header />
-      </div>
-      <Footer />
-    </>
+    <Layout>
+      <h1>fgfgfg</h1>
+    </Layout>
   );
 }
