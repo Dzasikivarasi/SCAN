@@ -1,10 +1,10 @@
-type BurgerIconType = {
+type BurgerIconProps = {
   menuOpenHandler: () => void;
 };
 
 export default function BurgerIcon({
   menuOpenHandler,
-}: BurgerIconType): JSX.Element {
+}: BurgerIconProps): JSX.Element {
   const onClickHandler = () => {
     menuOpenHandler();
   };

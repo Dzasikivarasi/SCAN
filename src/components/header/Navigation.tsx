@@ -1,6 +1,6 @@
 import { MenuItems } from "../../constants";
 
-type NavigationPropsType = {
+type NavigationProps = {
   classList: string;
   classItem: string;
 };
@@ -8,7 +8,7 @@ type NavigationPropsType = {
 export default function Navigation({
   classList,
   classItem,
-}: NavigationPropsType): JSX.Element {
+}: NavigationProps): JSX.Element {
   const menuItems = MenuItems.map((item) => (
     <li className={classItem} key={item.link}>
       <a href={`${item.link}`}>{item.item}</a>

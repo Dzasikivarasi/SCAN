@@ -1,4 +1,4 @@
-type LoginType = {
+type LoginProps = {
   classLogin: string;
   classLink: string;
   classButton: string;
@@ -8,7 +8,7 @@ export default function Login({
   classLogin,
   classLink,
   classButton,
-}: LoginType): JSX.Element {
+}: LoginProps): JSX.Element {
   return (
     <div className={classLogin}>
       <a className={classLink} href="#">

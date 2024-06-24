@@ -1,6 +1,6 @@
 import Logo from "../logo";
 
-export function Footer() {
+export function Footer(): JSX.Element {
   return (
     <footer className="footer">
       <Logo className="footer_logo" url="public/img/header-logo-white.svg" />

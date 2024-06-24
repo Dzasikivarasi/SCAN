@@ -1,9 +1,9 @@
-type LogoPropsType = {
+type LogoProps = {
   className: string;
   url: string;
 };
 
-export default function Logo({ className, url }: LogoPropsType): JSX.Element {
+export default function Logo({ className, url }: LogoProps): JSX.Element {
   return (
     <div className={className}>
       <a href="#">

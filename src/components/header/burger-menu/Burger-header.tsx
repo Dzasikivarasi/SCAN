@@ -1,10 +1,10 @@
-type BurgerHeaderType = {
+type BurgerHeaderProps = {
   menuCloseHandler: () => void;
 };
 
 export default function BurgerHeader({
   menuCloseHandler,
-}: BurgerHeaderType): JSX.Element {
+}: BurgerHeaderProps): JSX.Element {
   const onClickHandler = () => {
     menuCloseHandler();
   };

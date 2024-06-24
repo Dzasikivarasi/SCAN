@@ -2,7 +2,7 @@ import Login from "../login";
 import Navigation from "../navigation";
 import BurgerHeader from "./burger-header";
 
-type BurgerDropdownType = {
+type BurgerDropdown = {
   menuIsOpen: boolean;
   menuCloseHandler: () => void;
 };
@@ -10,7 +10,7 @@ type BurgerDropdownType = {
 export default function BurgerDropdown({
   menuIsOpen,
   menuCloseHandler,
-}: BurgerDropdownType): JSX.Element {
+}: BurgerDropdown): JSX.Element {
   return (
     <div
       className={`header_menu-burger-dropdown ${

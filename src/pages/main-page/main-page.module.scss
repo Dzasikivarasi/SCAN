@@ -107,6 +107,12 @@
         @include arrow-button("img/main_arrow-right.svg");
         margin-left: 10px;
       }
+      &-arrow-left:disabled,
+      &-arrow-right:disabled {
+        cursor: default;
+        box-shadow: none;
+        opacity: 0.2;
+      }
 
       &-list {
         @include flex-space-between();
@@ -118,9 +124,8 @@
 
         &-item {
           @include base-card;
-          flex: 0 0 calc((100% - 90px) / 3);
-          background: url("img/main_privilege-1.svg") no-repeat 5% 15%;
-          width: calc(100% / 3);
+          background: no-repeat 5% 15%;
+          width: 100%;
           min-width: 225px;
           padding-top: 110px;
           height: auto;
@@ -128,10 +133,16 @@
           margin-right: 15px;
           margin-left: 15px;
 
-          @media (max-width: 990px) {
-            flex: 1;
-            width: calc(100% - 30px);
-            min-width: calc(100% - 30px);
+          &.item1 {
+            background-image: url("img/main_privilege-1.svg");
+          }
+
+          &.item2 {
+            background-image: url("img/main_privilege-2.svg");
+          }
+
+          &.item3 {
+            background-image: url("img/main_privilege-3.svg");
           }
         }
       }
@@ -167,16 +178,30 @@
 
       &-item {
         @include base-card;
-        padding: 0;
+        padding: 0px;
         width: calc((100% - 80px) / 0.3);
 
         &-title {
-          background: url("img/main_tarif-1.svg") no-repeat 95% 20%;
+          background: no-repeat 95% 20%;
           padding: 30px;
-          border-top-left-radius: 7px;
-          border-top-right-radius: 7px;
-          // Передать этот стиль в реакт
-          background-color: $yellow;
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+
+          &.beginner {
+            background-image: url("img/main_tarif-1.svg");
+            background-color: $yellow;
+          }
+
+          &.pro {
+            background-image: url("img/main_tarif-2.svg");
+            background-color: $light-green;
+          }
+
+          &.business {
+            background-image: url("img/main_tarif-3.svg");
+            background-color: $black;
+            color: $white;
+          }
 
           &-type {
             font-weight: 500;
@@ -212,6 +237,11 @@
           &-installment {
             font-weight: 400;
             padding-top: 10px;
+            min-height: 56.5px;
+
+            @media (max-width: 1400px) {
+              min-height: auto;
+            }
           }
         }
 
@@ -270,15 +300,23 @@
         }
       }
 
-      &-item.active {
+      &-item.beginner.active {
         border: solid 2px $yellow;
+      }
+
+      &-item.pro.active {
+        border: solid 2px $light-green;
+      }
+
+      &-item.business.active {
+        border: solid 2px $black;
       }
     }
 
     &-active {
       position: absolute;
       top: 10%;
-      left: 70%;
+      left: 65%;
       background-color: $blue;
       color: $white;
       font-size: 14px;
@@ -287,14 +325,12 @@
       width: 135px;
       padding: 5px 10px;
 
-      @media (max-width: 510px) {
-        top: 5%;
-        font-size: 12px;
-        width: 120px;
+      @media (max-width: 1400px) {
+        left: 70%;
       }
 
-      @media (max-width: 450px) {
-        left: 60%;
+      @media (max-width: 510px) {
+        display: none;
       }
 
       p {
