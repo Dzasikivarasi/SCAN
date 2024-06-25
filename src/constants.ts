@@ -71,5 +71,31 @@ export const TarifItems = [
   },
 ];
 
+export const LoginSourceItem = [
+  {
+    name: "Google",
+    image: "public/img/auth-main-google.svg",
+    url: "#",
+  },
+  {
+    name: "Facebook",
+    image: "public/img/auth-main-facebook.svg",
+    url: "#",
+  },
+  {
+    name: "Yandex",
+    image: "public/img/auth-main-yandex.svg",
+    url: "#",
+  },
+];
+
 export const PRIVILEGES_ON_PAGE = 3;
 export const PRIVILEGES_ON_PAGE_MOBILE = 1;
+export const MOBILE_DESCTOP_FOR_PRIVELEGES = 990;
+
+export enum SubmitStatus {
+  Null,
+  Pending,
+  Fulfilled,
+  Error,
+}

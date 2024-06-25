@@ -8,3 +8,9 @@ export type TarifType = {
   options: string[];
   type: string;
 };
+
+export type LoginSourceItemType = {
+  name: string;
+  image: string;
+  url: string;
+};

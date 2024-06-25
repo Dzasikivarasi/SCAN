@@ -2,11 +2,11 @@
 
 .main {
   padding: 70px 0 80px;
-  background: url("img/auth-main-banner.svg") no-repeat 8% 70%;
+  background: url("img/auth-main-banner.svg") no-repeat 8% 75%;
 
   @media (max-width: 1050px) {
-    padding: 30px 0 350px;
-    background: url("img/auth-main-banner.svg") no-repeat 8% 100%;
+    padding: 30px 0 450px;
+    background: url("img/auth-main-banner.svg") no-repeat 8% 95%;
   }
 
   &_banner {
@@ -127,7 +127,7 @@
           }
         }
 
-        button {
+        &-submit {
           @include base-button(22px, $white, $violet);
           margin-top: 10px;
           margin-bottom: 15px;

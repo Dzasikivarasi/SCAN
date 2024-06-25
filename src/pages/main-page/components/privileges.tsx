@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   PRIVILEGES_ON_PAGE,
   PRIVILEGES_ON_PAGE_MOBILE,
+  MOBILE_DESCTOP_FOR_PRIVELEGES,
   PrivilegesItems,
 } from "../../../constants";
 import styles from "../main-page.module.scss";
@@ -15,7 +16,7 @@ export function Privileges(): JSX.Element {
 
   useEffect(() => {
     const updateItemsPerPage = () => {
-      if (window.innerWidth < 990) {
+      if (window.innerWidth < MOBILE_DESCTOP_FOR_PRIVELEGES) {
         setItemsPerPage(PRIVILEGES_ON_PAGE_MOBILE);
       } else {
         setItemsPerPage(PRIVILEGES_ON_PAGE);
