@@ -8,7 +8,7 @@ export function Tarifs(): JSX.Element {
       <h2 className={styles["main_tarif-title"]}>Наши тарифы</h2>
       <ul className={styles["main_tarif-list"]}>
         {TarifItems.map((item) => (
-          <TarifCard item={item} />
+          <TarifCard item={item} key={item.id} />
         ))}
       </ul>
     </section>

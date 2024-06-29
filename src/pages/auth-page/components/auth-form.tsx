@@ -2,24 +2,23 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 import styles from "../auth-page.module.scss";
 import { Button } from "./button";
 import { LoginSource } from "./login-source";
-import { SubmitStatus } from "../../../constants";
-// import { toast } from "react-toastify";
+import { AUTH_ERROR, AppRoute, AuthorizationStatus } from "../../../constants";
+import { toast } from "react-toastify";
 import { validateForm } from "../../../utils";
+import { AuthData } from "../../../types";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../store/store";
+import { loginAction, setUser } from "../../../store/userProcessSlice";
+import { useNavigate } from "react-router-dom";
 
 export function AuthForm(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const [buttonDisable, setButtonDisable] = useState<boolean>(false);
-  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(
-    SubmitStatus.Null
-  );
-  const isSubmitting = submitStatus === SubmitStatus.Pending;
-
-  // useEffect(() => {
-  //   if (authStatus === AuthorizationStatus.Auth) {
-  //     navigate(AppRoute.Main);
-  //   }
-  // }, [authStatus, navigate]);
+  const dispatch = useDispatch<AppDispatch>();
+  const authStatus = useSelector((state: RootState) => state.user.authStatus);
+  const isSubmitting = authStatus === AuthorizationStatus.Submitting;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const checkButtonDisable = () => {
@@ -42,38 +41,32 @@ export function AuthForm(): JSX.Element {
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    setSubmitStatus(SubmitStatus.Pending);
     if (!loginRef.current || !passwordRef.current) {
       return;
     }
 
-    // const email = loginRef.current.value;
+    const login = loginRef.current.value;
     const password = passwordRef.current.value;
 
     if (!validateForm(password)) {
-      setSubmitStatus(SubmitStatus.Null);
       return;
     }
 
-    // const authData: AuthData = {
-    //   login: email,
-    //   password: password,
-    // };
+    const authData: AuthData = {
+      login: login,
+      password: password,
+    };
 
-    // dispatch(loginAction(authData))
-    //   .then((response) => {
-    //     if (response.meta.requestStatus === 'rejected') {
-    //       toast.error(Errors.AUTH_MESSAGE);
-    //       setSubmitStatus(SubmitStatus.Error);
-    //     } else {
-    //       setSubmitStatus(SubmitStatus.Fulfilled);
-    //       navigate(AppRoute.Main);
-    //     }
-    //   })
-    //   .catch(() => {
-    //     toast.error(Errors.AUTH_MESSAGE);
-    //     setSubmitStatus(SubmitStatus.Error);
-    //   });
+    dispatch(loginAction(authData))
+      .unwrap()
+      .then(() => {
+        dispatch(setUser(login));
+        toast.success("Login successful");
+        navigate(AppRoute.Main);
+      })
+      .catch(() => {
+        toast.error(AUTH_ERROR);
+      });
   };
 
   return (
@@ -129,3 +122,9 @@ export function AuthForm(): JSX.Element {
     </div>
   );
 }
+
+// useEffect(() => {
+//   if (authStatus === AuthorizationStatus.Auth) {
+//     navigate(AppRoute.Main);
+//   }
+// }, [authStatus, navigate]);

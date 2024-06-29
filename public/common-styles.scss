@@ -205,6 +205,10 @@ body {
       align-items: center;
       gap: 5px;
 
+      @media (max-width: 1050px) {
+        display: none;
+      }
+
       &-name {
         display: flex;
         flex-direction: column;
@@ -217,10 +221,12 @@ body {
           white-space: nowrap;
         }
 
-        a {
+        &-button {
+          background: none;
           font-size: 10px;
           color: #999999;
           white-space: nowrap;
+          border: none;
         }
       }
     }
@@ -279,6 +285,7 @@ body {
       height: 100vh;
       transition: transform 0.3s ease-in-out;
       transform: translateX(100%);
+      z-index: 10;
 
       @media (max-width: 850px) {
         padding: 15px;

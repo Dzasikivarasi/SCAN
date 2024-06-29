@@ -1,17 +1,13 @@
-import { ReactNode } from "react";
+import { Outlet } from "react-router-dom";
 import { Footer } from "./footer/footer";
 import Header from "./header/header";
 
-type LayoutProps = {
-  children: ReactNode;
-};
-
-export default function Layout({ children }: LayoutProps): JSX.Element {
+export default function Layout(): JSX.Element {
   return (
     <>
       <div className="container">
         <Header />
-        {children}
+        <Outlet />
       </div>
       <Footer />
     </>

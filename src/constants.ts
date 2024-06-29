@@ -1,3 +1,18 @@
+export const BACKEND_URL = "https://gateway.scan-interfax.ru";
+export const LOGIN_ENDPOINT = "/api/v1/account/login";
+export const LIMITS_ENDPOINT = "/api/v1/account/info";
+export const HISTOGRAMS_ENDPOINT = "/api/v1/objectsearch/histograms";
+export const OBJECTSEARCH_ENDPOINT = "/api/v1/objectsearch";
+export const DOCUMENT_ENDPOINT = "/api/v1/documents";
+export const REQUEST_TIMEOUT = 5000;
+
+export enum AppRoute {
+  Main = "/",
+  Auth = "/login",
+  Search = "/search",
+  Results = "/results",
+}
+
 export const MenuItems = [
   { item: "Главная", link: "#" },
   { item: "Тарифы", link: "##" },
@@ -99,3 +114,13 @@ export enum SubmitStatus {
   Fulfilled,
   Error,
 }
+
+export enum AuthorizationStatus {
+  Auth = "AUTH",
+  NoAuth = "NO_AUTH",
+  Unknown = "UNKNOWN",
+  Submitting = "SUBMITTING",
+}
+
+export const AUTH_ERROR = "Ошибка авторизации";
+export const LOAD_ERROR = "Ошибка загрузки данных";

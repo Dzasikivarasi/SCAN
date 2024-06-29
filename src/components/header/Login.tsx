@@ -1,3 +1,6 @@
+import { Link, useNavigate } from "react-router-dom";
+import { AppRoute } from "../../constants";
+
 type LoginProps = {
   classLogin: string;
   classLink: string;
@@ -9,12 +12,20 @@ export default function Login({
   classLink,
   classButton,
 }: LoginProps): JSX.Element {
+  const navigate = useNavigate();
+
+  const onButtonClick = () => {
+    navigate(AppRoute.Auth);
+  };
+
   return (
     <div className={classLogin}>
-      <a className={classLink} href="#">
+      <Link className={classLink} to="#">
         Зарегистрироваться
-      </a>
-      <button className={classButton}>Войти</button>
+      </Link>
+      <button className={classButton} onClick={onButtonClick}>
+        Войти
+      </button>
     </div>
   );
 }

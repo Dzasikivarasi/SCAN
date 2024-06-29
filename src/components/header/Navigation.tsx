@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { MenuItems } from "../../constants";
 
 type NavigationProps = {
@@ -11,7 +12,7 @@ export default function Navigation({
 }: NavigationProps): JSX.Element {
   const menuItems = MenuItems.map((item) => (
     <li className={classItem} key={item.link}>
-      <a href={`${item.link}`}>{item.item}</a>
+      <Link to={item.link}>{item.item}</Link>
     </li>
   ));
 

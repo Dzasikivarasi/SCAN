@@ -1,9 +1,26 @@
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { logout } from "../../store/userProcessSlice";
+
 export default function User(): JSX.Element {
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user.user);
+
+  const onButtonClick = () => {
+    dispatch(logout());
+    logout();
+  };
+
   return (
-    <div className="header_menu-user hidden">
+    <div className="header_menu-user">
       <div className="header_menu-user-name">
-        <p>Алексей А.</p>
-        <a href="#">Выйти</a>
+        <p>{user}</p>
+        <button
+          onClick={onButtonClick}
+          className="header_menu-user-name-button"
+        >
+          Выйти
+        </button>
       </div>
       <img
         className="header_menu-user-foto"

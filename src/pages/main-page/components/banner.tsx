@@ -1,7 +1,18 @@
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
 import styles from "../main-page.module.scss";
 import { Button } from "./button";
+import { AppRoute, AuthorizationStatus } from "../../../constants";
+import { useNavigate } from "react-router-dom";
 
 export function Banner(): JSX.Element {
+  const authStatus = useSelector((state: RootState) => state.user.authStatus);
+  const navigate = useNavigate();
+
+  const buttonClickHandler = () => {
+    navigate(AppRoute.Search);
+  };
+
   return (
     <section className={styles.main_banner}>
       <div className={styles["main_banner-left"]}>
@@ -14,10 +25,14 @@ export function Banner(): JSX.Element {
           Комплексный анализ публикаций, получение данных в формате PDF на
           электронную почту.
         </p>
-        <Button
-          className="main_banner-left-button"
-          buttonText="Запросить данные"
-        />
+
+        {authStatus === AuthorizationStatus.Auth && (
+          <Button
+            className="main_banner-left-button"
+            buttonText="Запросить данные"
+            buttonClickHandler={buttonClickHandler}
+          />
+        )}
       </div>
       <img src="img/main_banner.svg" alt="баннер" />
     </section>
