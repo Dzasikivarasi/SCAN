@@ -4,6 +4,7 @@ import {
   AuthorizationStatus,
   BACKEND_URL,
   LIMITS_ENDPOINT,
+  LOAD_ERROR,
   LOGIN_ENDPOINT,
 } from "../constants";
 import { AuthData, AuthResponse, UserLimits } from "../types";
@@ -14,6 +15,7 @@ import {
   getTokenExpireTime,
   saveTokenExpireTime,
 } from "../services/token";
+import { toast } from "react-toastify";
 
 interface UserInitialStateType {
   user: string;
@@ -21,6 +23,7 @@ interface UserInitialStateType {
   tokenExpireTime: string | null;
   authStatus: AuthorizationStatus;
   eventFiltersInfo: UserLimits | null;
+  loadingLimits: boolean;
 }
 
 const initialState: UserInitialStateType = {
@@ -29,6 +32,7 @@ const initialState: UserInitialStateType = {
   tokenExpireTime: getTokenExpireTime(),
   authStatus: AuthorizationStatus.Unknown,
   eventFiltersInfo: null,
+  loadingLimits: false,
 };
 
 const checkTokenValidity = (
@@ -137,13 +141,21 @@ const userSlice = createSlice({
       .addCase(loginAction.rejected, (state) => {
         state.authStatus = AuthorizationStatus.NoAuth;
       })
+      .addCase(getLimits.pending, (state) => {
+        state.loadingLimits = true;
+      })
       .addCase(getLimits.fulfilled, (state, action) => {
+        state.loadingLimits = false;
         if (action.payload) {
           state.eventFiltersInfo = {
             usedCompanyCount: action.payload.usedCompanyCount,
             companyLimit: action.payload.companyLimit,
           };
         }
+      })
+      .addCase(getLimits.rejected, (state) => {
+        state.loadingLimits = false;
+        toast(LOAD_ERROR);
       });
   },
 });

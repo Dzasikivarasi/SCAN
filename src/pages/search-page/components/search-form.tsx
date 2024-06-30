@@ -12,6 +12,7 @@ import { AppDispatch, RootState } from "../../../store/store";
 import { AppRoute, LOAD_ERROR } from "../../../constants";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { fetchObjectsIDs } from "../../../store/objectsProcessSlice";
 
 export function SearchForm(): JSX.Element {
   const [inputType, setInputType] = useState("text");
@@ -29,6 +30,12 @@ export function SearchForm(): JSX.Element {
     dateTo: "",
   });
 
+  const [errors, setErrors] = useState({
+    inn: "",
+    results: "",
+    date: "",
+  });
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -44,16 +51,33 @@ export function SearchForm(): JSX.Element {
     console.log("кнопка сработала");
 
     const { inn, results, dateFrom, dateTo } = formData;
+    let valid = true;
+    const newErrors = {
+      inn: "",
+      results: "",
+      date: "",
+    };
 
-    if (!validateInn(inn)) {
-      return;
+    const innError = validateInn(inn);
+    if (innError) {
+      newErrors.inn = innError;
+      valid = false;
     }
 
-    if (!validateResultsCount(results)) {
-      return;
+    const resultsError = validateResultsCount(results);
+    if (resultsError) {
+      newErrors.results = resultsError;
+      valid = false;
     }
 
-    if (!validateDate(dateFrom, dateTo)) {
+    const dateError = validateDate(dateFrom, dateTo);
+    if (dateError) {
+      newErrors.date = dateError;
+      valid = false;
+    }
+
+    if (!valid) {
+      setErrors(newErrors);
       return;
     }
 
@@ -75,6 +99,7 @@ export function SearchForm(): JSX.Element {
       .catch(() => {
         toast.error(LOAD_ERROR);
       });
+    dispatch(fetchObjectsIDs(searchData));
   };
 
   return (
@@ -89,7 +114,10 @@ export function SearchForm(): JSX.Element {
           name="inn"
           placeholder="10 цифр"
           onChange={handleInputChange}
+          className={errors.inn ? styles.error : ""}
+          required
         />
+        {errors.inn && <p className={styles.errorText}>{errors.inn}</p>}
 
         <div className={styles["main_search-form-dropdown"]}>
           <label htmlFor="tonality">
@@ -117,7 +145,9 @@ export function SearchForm(): JSX.Element {
           placeholder="От 1 до 1000"
           onChange={handleInputChange}
           required
+          className={errors.results ? styles.error : ""}
         />
+        {errors.results && <p className={styles.errorText}>{errors.results}</p>}
 
         <label htmlFor="date-from date-to">
           Диапазон поиска<span>*</span>
@@ -128,24 +158,29 @@ export function SearchForm(): JSX.Element {
             id="dateFrom"
             name="dateFrom"
             placeholder="Дата начала"
-            className={styles["main_search-date-from"]}
             onChange={handleInputChange}
             onFocus={() => setInputType("date")}
             onBlur={() => setInputType("text")}
             required
+            className={`${styles["main_search-date-from"]} ${
+              errors.date ? styles.error : ""
+            }`}
           />
           <input
             type={inputType}
             id="dateTo"
             name="dateTo"
             placeholder="Дата конца"
-            className={styles["main_search-date-to"]}
             onChange={handleInputChange}
             onFocus={() => setInputType("date")}
             onBlur={() => setInputType("text")}
             required
+            className={`${styles["main_search-date-to"]} ${
+              errors.date ? styles.error : ""
+            }`}
           />
         </div>
+        {errors.date && <p className={styles.errorText}>{errors.date}</p>}
       </div>
 
       <div className={styles["main_search-right"]}>

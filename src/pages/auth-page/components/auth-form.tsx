@@ -61,7 +61,6 @@ export function AuthForm(): JSX.Element {
       .unwrap()
       .then(() => {
         dispatch(setUser(login));
-        toast.success("Login successful");
         navigate(AppRoute.Main);
       })
       .catch(() => {

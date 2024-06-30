@@ -1,24 +1,54 @@
 import { useSelector } from "react-redux";
 import styles from "../results-page.module.scss";
 import { RootState } from "../../../store/store";
-import { formatWordCount } from "../../../utils";
-// import { format } from "date-fns";
+import { formatDate, formatWordCount } from "../../../utils";
+import { DataCells, HistogramDataPoint } from "../../../types";
+import Loader from "../../../components/loader";
 
 export function Histogram(): JSX.Element {
   const histogramData = useSelector(
     (state: RootState) => state.histogram.histogramData
   );
+  const loadingHistogram = useSelector(
+    (state: RootState) => state.histogram.loading
+  );
 
-  // const formatDate = (dateString: string) => {
-  //   const date = new Date(dateString);
-  //   return format(date, "dd.MM.yyyy");
-  // };
+  const totalDocumentsData = histogramData.data.find(
+    (item) => item.histogramType === "totalDocuments"
+  );
+  const riskFactorsData = histogramData.data.find(
+    (item) => item.histogramType === "riskFactors"
+  );
 
+  const renderDataCells: React.FC<DataCells> = ({ data }) => {
+    if (!data) return null;
+    return (
+      <>
+        {data.data.map((item: HistogramDataPoint, index: number) => (
+          <td key={index}>{item.value}</td>
+        ))}
+      </>
+    );
+  };
+
+  const renderPeriodCells: React.FC<DataCells> = ({ data }) => {
+    if (!data) return null;
+    return (
+      <>
+        {data.data.map((item: HistogramDataPoint, index: number) => (
+          <td key={index}>{formatDate(item.date)}</td>
+        ))}
+      </>
+    );
+  };
   return (
     <section className={styles["main_results"]}>
       <h2 className={styles["main_results-title"]}>Общая сводка</h2>
       <p className={styles["main_results-description"]}>
-        Найдено {formatWordCount(histogramData.length, "вариант")}
+        Найдено:{" "}
+        {totalDocumentsData
+          ? formatWordCount(totalDocumentsData.data.length, "вариант")
+          : ""}
       </p>
       <div className={styles["main_results-container"]}>
         <div className={styles["main_results-container-arrow-left"]}>
@@ -26,72 +56,73 @@ export function Histogram(): JSX.Element {
         </div>
         <div className={styles["main_results-container-table"]}>
           <table>
-            <tbody>
-              <tr>
-                <th className={styles["main_results-container-table-title"]}>
-                  Период
-                </th>
-                <td> 56</td>
-              </tr>
-              <tr>
-                <th className={styles["main_results-container-table-title"]}>
-                  Всего
-                </th>
-                <td>5</td>
-                <td>4</td>
-                <td>6</td>
-                <td>2</td>
-                <td>0</td>
-                <td>1</td>
-                <td>8</td>
-                <td>9</td>
-                <td>9</td>
-                <td>9</td>
-              </tr>
-              <tr>
-                <th className={styles["main_results-container-table-title"]}>
-                  Риски
-                </th>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>1</td>
-                <td>2</td>
-                <td>7</td>
-                <td>3</td>
-                <td>0</td>
-                <td>1</td>
-                <td>0</td>
-              </tr>
-            </tbody>
+            {loadingHistogram ? (
+              <Loader />
+            ) : (
+              <tbody>
+                <tr>
+                  <th className={styles["main_results-container-table-title"]}>
+                    Период
+                  </th>
+                  {totalDocumentsData &&
+                    renderPeriodCells({ data: totalDocumentsData })}
+                </tr>
+                <tr>
+                  <th className={styles["main_results-container-table-title"]}>
+                    Всего
+                  </th>
+                  {totalDocumentsData &&
+                    renderDataCells({ data: totalDocumentsData })}
+                </tr>
+                <tr>
+                  <th className={styles["main_results-container-table-title"]}>
+                    Риски
+                  </th>
+                  {riskFactorsData &&
+                    renderDataCells({ data: riskFactorsData })}
+                </tr>
+              </tbody>
+            )}
           </table>
         </div>
 
         <div className={styles["main_results-container-mobile-table"]}>
           <table>
             <thead>
-              <th
-                className={styles["main_results-container-mobile-table-title"]}
-              >
-                Период
-              </th>
-              <th
-                className={styles["main_results-container-mobile-table-title"]}
-              >
-                Всего
-              </th>
-              <th
-                className={styles["main_results-container-mobile-table-title"]}
-              >
-                Риски
-              </th>
+              <tr>
+                <th
+                  className={
+                    styles["main_results-container-mobile-table-title"]
+                  }
+                >
+                  Период
+                </th>
+                <th
+                  className={
+                    styles["main_results-container-mobile-table-title"]
+                  }
+                >
+                  Всего
+                </th>
+                <th
+                  className={
+                    styles["main_results-container-mobile-table-title"]
+                  }
+                >
+                  Риски
+                </th>
+              </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>17.10.2021</td>
-                <td>5</td>
-                <td>0</td>
-              </tr>
+              {totalDocumentsData && (
+                <tr>
+                  <td>{formatDate(totalDocumentsData.data[0].date)}</td>
+                  <td>{totalDocumentsData.data[0].value}</td>
+                  <td>
+                    {riskFactorsData ? riskFactorsData.data[0].value : "0"}
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
@@ -102,3 +133,10 @@ export function Histogram(): JSX.Element {
     </section>
   );
 }
+
+// const totalDocumentsData = histogramData.data.find(
+//   (item) => item.histogramType === "totalDocuments"
+// );
+// const totalDocumentsData = histogramData.data.find(
+//   (item) => item.histogramType === "totalDocuments"
+// );

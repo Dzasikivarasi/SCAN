@@ -1,22 +1,44 @@
+import { DocumentResponseItem } from "../../../types";
+import { formatDate } from "../../../utils";
 import styles from "../results-page.module.scss";
+import DOMPurify from "dompurify";
 
-export function ArticleCard(): JSX.Element {
+export type ArticleCardProps = {
+  document: DocumentResponseItem;
+};
+
+export function ArticleCard({ document }: ArticleCardProps): JSX.Element {
+  const createMarkup = (html: string) => {
+    const cleanHtml = DOMPurify.sanitize(html);
+    return { __html: cleanHtml };
+  };
+
   return (
     <li className={styles["main_articles-list-item"]}>
       <div className={styles["main_articles-list-item-header"]}>
         <p className={styles["main_articles-list-item-header-date"]}>
-          13.09.2021
+          {document.ok?.issueDate && formatDate(document.ok?.issueDate)}
         </p>
-        <a className={styles["main_articles-list-item-header-source"]} href="#">
-          Комсомольская правда KP.RU
+        <a
+          className={styles["main_articles-list-item-header-source"]}
+          href={document.ok?.url}
+          target="_blank"
+        >
+          {document.ok?.source.name}
         </a>
       </div>
       <p className={styles["main_articles-list-item-title"]}>
-        Скиллфэктори - лучшая онлайн-школа для будущих айтишников
+        {document.ok?.title.text}
       </p>
-      <div className={styles["main_articles-list-item-type"]}>
-        Технические новости
-      </div>
+      {(document.ok?.attributes.isTechNews ||
+        document.ok?.attributes.isAnnouncement ||
+        document.ok?.attributes.isDigest) && (
+        <div className={styles["main_articles-list-item-type"]}>
+          {document.ok?.attributes.isTechNews && "Технические новости"}
+          {document.ok?.attributes.isAnnouncement && "Объявление"}
+          {document.ok?.attributes.isDigest && "Дайджест"}
+        </div>
+      )}
       <div className={styles["main_articles-list-item-banner"]}>
         <img
           className={styles["main_articles-list-item-banner"]}
@@ -24,23 +46,22 @@ export function ArticleCard(): JSX.Element {
           alt="Article illustration"
         />
       </div>
-      <p className={styles["main_articles-list-item-text"]}>
-        SkillFactory — школа для всех, кто хочет изменить свою карьеру и жизнь.
-        С 2016 года обучение прошли 20 000+ человек из 40 стран с 4 континентов,
-        самому взрослому студенту сейчас 86 лет. Выпускники работают в Сбере,
-        Cisco, Bayer, Nvidia, МТС, Ростелекоме, Mail.ru, Яндексе, Ozon и других
-        топовых компаниях. Принципы SkillFactory: акцент на практике, забота о
-        студентах и ориентир на трудоустройство. 80% обучения — выполнение
-        упражнений и реальных проектов. Каждого студента поддерживают менторы, 2
-        саппорт-линии и комьюнити курса. А карьерный центр помогает составить
-        резюме, подготовиться к собеседованиям и познакомиться с IT-рекрутерами.
-      </p>
+      <div
+        className={styles["main_articles-list-item-text"]}
+        dangerouslySetInnerHTML={createMarkup(
+          document.ok?.content.markup || ""
+        )}
+      />
       <div className={styles["main_articles-list-item-footer"]}>
-        <button className={styles["main_articles-list-item-footer-button"]}>
+        <a
+          className={styles["main_articles-list-item-footer-button"]}
+          href={document.ok?.url}
+          target="_blank"
+        >
           Читать в источнике
-        </button>
+        </a>
         <p className={styles["main_articles-list-item-footer-words"]}>
-          2 543 слова
+          {document.ok?.attributes.wordCount}
         </p>
       </div>
     </li>

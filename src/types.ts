@@ -42,26 +42,28 @@ export interface HistogramDataPoint {
   value: number;
 }
 
-export interface Histogram {
+// export interface Histogram {
+//   data: HistogramDataPoint[];
+//   histogramType: "totalDocuments" | "riskFactors";
+// }
+
+// export interface HistogramResponse {
+//   data: Histogram[];
+// }
+
+export interface HistogramDataPoint {
+  date: string;
+  value: number;
+}
+
+export interface HistogramTypeData {
   data: HistogramDataPoint[];
   histogramType: "totalDocuments" | "riskFactors";
 }
 
 export interface HistogramResponse {
-  data: Histogram[];
+  data: HistogramTypeData[];
 }
-
-interface HistogramState {
-  data: Histogram[];
-  loading: boolean;
-  error: string | null;
-}
-
-export const initialState: HistogramState = {
-  data: [],
-  loading: false,
-  error: null,
-};
 
 export interface SearchResultItem {
   encodedId: string;
@@ -123,6 +125,10 @@ export interface DocumentResponseItem {
     errorCode: string;
     errorMessage: string;
   };
+}
+
+export interface DataCells {
+  data: HistogramTypeData | undefined;
 }
 
 export interface DocumentResponse extends Array<DocumentResponseItem> {}

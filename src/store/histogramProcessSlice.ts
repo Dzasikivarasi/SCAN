@@ -1,16 +1,16 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "./store";
-import { Histogram, HistogramRequestData, HistogramResponse } from "../types";
+import { HistogramRequestData, HistogramResponse } from "../types";
 import { BACKEND_URL, HISTOGRAMS_ENDPOINT } from "../constants";
 
 interface HistogramState {
-  histogramData: Histogram[];
+  histogramData: HistogramResponse;
   loading: boolean;
 }
 
 const initialState: HistogramState = {
-  histogramData: [],
+  histogramData: { data: [] },
   loading: false,
 };
 
@@ -86,8 +86,8 @@ export const fetchHistograms = createAsyncThunk(
         },
       }
     );
-    console.log(response.data.data);
-    return response.data.data;
+    console.log(response.data);
+    return response.data;
   }
 );
 
@@ -102,7 +102,7 @@ const histogramsSlice = createSlice({
       })
       .addCase(
         fetchHistograms.fulfilled,
-        (state, action: PayloadAction<Histogram[]>) => {
+        (state, action: PayloadAction<HistogramResponse>) => {
           state.loading = false;
           state.histogramData = action.payload;
         }

@@ -21,27 +21,28 @@ const initialState: DocumentsState = {
 
 export const fetchDocuments = createAsyncThunk<
   DocumentResponseItem[],
-  DocumentRequestData
->(
-  "documents/fetchDocuments",
-  async (requestData: DocumentRequestData, { getState }) => {
-    const state = getState() as RootState;
-    const token = state.user.accessToken;
+  string[]
+>("documents/fetchDocuments", async (ids: string[], { getState }) => {
+  const state = getState() as RootState;
+  const token = state.user.accessToken;
 
-    const response = await axios.post<DocumentResponse>(
-      `${BACKEND_URL}${DOCUMENT_ENDPOINT}`,
-      requestData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    console.log(response.data);
-    return response.data;
-  }
-);
+  const requestData: DocumentRequestData = {
+    ids: ids,
+  };
+
+  const response = await axios.post<DocumentResponse>(
+    `${BACKEND_URL}${DOCUMENT_ENDPOINT}`,
+    requestData,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  console.log(response.data);
+  return response.data;
+});
 
 const documentsSlice = createSlice({
   name: "documents",

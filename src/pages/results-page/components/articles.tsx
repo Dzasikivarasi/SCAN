@@ -1,106 +1,65 @@
+import { useDispatch, useSelector } from "react-redux";
 import styles from "../results-page.module.scss";
+import { AppDispatch, RootState } from "../../../store/store";
+import { fetchDocuments } from "../../../store/documentsProcessSlice";
+import { useEffect, useState } from "react";
+import Loader from "../../../components/loader";
+import { ArticleCard } from "./article-card";
+
+const DOCUMENTS_PER_CLICK = 2;
 
 export function Articles(): JSX.Element {
+  const dispatch = useDispatch<AppDispatch>();
+  const ids = useSelector((state: RootState) => state.objectsIDs.ids);
+  const documents = useSelector(
+    (state: RootState) => state.documents.documents
+  );
+  const loadingDocuments = useSelector(
+    (state: RootState) => state.documents.loading
+  );
+  const [documentsDisplayed, setDocumentsDisplayed] =
+    useState(DOCUMENTS_PER_CLICK);
+
+  const loadMoreDocuments = () => {
+    const nextBatch = ids.slice(
+      documentsDisplayed,
+      documentsDisplayed + DOCUMENTS_PER_CLICK
+    );
+    dispatch(fetchDocuments(nextBatch));
+    setDocumentsDisplayed(
+      (prevDocumentsDisplayed) => prevDocumentsDisplayed + DOCUMENTS_PER_CLICK
+    );
+  };
+
+  useEffect(() => {
+    if (ids.length > 0) {
+      dispatch(fetchDocuments(ids.slice(0, documentsDisplayed)));
+    }
+  }, [ids, documentsDisplayed, dispatch]);
+
   return (
     <section className={styles["main_articles"]}>
       <h2 className={styles["main_articles-title"]}>Список документов</h2>
-      <ul className={styles["main_articles-list"]}>
-        <li className={styles["main_articles-list-item"]}>
-          <div className={styles["main_articles-list-item-header"]}>
-            <p className={styles["main_articles-list-item-header-date"]}>
-              13.09.2021
-            </p>
-            <a
-              className={styles["main_articles-list-item-header-source"]}
-              href="#"
-            >
-              Комсомольская правда KP.RU
-            </a>
-          </div>
-          <p className={styles["main_articles-list-item-title"]}>
-            Скиллфэктори - лучшая онлайн-школа для будущих айтишников
-          </p>
-          <div className={styles["main_articles-list-item-type"]}>
-            Технические новости
-          </div>
-          <div className={styles["main_articles-list-item-banner"]}>
-            <img
-              className={styles["main_articles-list-item-banner"]}
-              src="public/img/results_articles-image-1.jpg"
-              alt="Article illustration"
-            />
-          </div>
-          <p className={styles["main_articles-list-item-text"]}>
-            SkillFactory — школа для всех, кто хочет изменить свою карьеру и
-            жизнь. С 2016 года обучение прошли 20 000+ человек из 40 стран с 4
-            континентов, самому взрослому студенту сейчас 86 лет. Выпускники
-            работают в Сбере, Cisco, Bayer, Nvidia, МТС, Ростелекоме, Mail.ru,
-            Яндексе, Ozon и других топовых компаниях. Принципы SkillFactory:
-            акцент на практике, забота о студентах и ориентир на
-            трудоустройство. 80% обучения — выполнение упражнений и реальных
-            проектов. Каждого студента поддерживают менторы, 2 саппорт-линии и
-            комьюнити курса. А карьерный центр помогает составить резюме,
-            подготовиться к собеседованиям и познакомиться с IT-рекрутерами.
-          </p>
-          <div className={styles["main_articles-list-item-footer"]}>
-            <button className={styles["main_articles-list-item-footer-button"]}>
-              Читать в источнике
-            </button>
-            <p className={styles["main_articles-list-item-footer-words"]}>
-              2 543 слова
-            </p>
-          </div>
-        </li>
-        <li className={styles["main_articles-list-item"]}>
-          <div className={styles["main_articles-list-item-header"]}>
-            <p className={styles["main_articles-list-item-header-date"]}>
-              13.09.2021
-            </p>
-            <a
-              className={styles["main_articles-list-item-header-source"]}
-              href="#"
-            >
-              Комсомольская правда KP.RU
-            </a>
-          </div>
-          <p className={styles["main_articles-list-item-title"]}>
-            Скиллфэктори - лучшая онлайн-школа для будущих айтишников
-          </p>
-          <div className={styles["main_articles-list-item-type"]}>
-            Технические новости
-          </div>
-          <div className={styles["main_articles-list-item-banner"]}>
-            <img
-              className={styles["main_articles-list-item-banner"]}
-              src="public/img/results_articles-image-1.jpg"
-              alt="Article illustration"
-            />
-          </div>
-          <p className={styles["main_articles-list-item-text"]}>
-            SkillFactory — школа для всех, кто хочет изменить свою карьеру и
-            жизнь. С 2016 года обучение прошли 20 000+ человек из 40 стран с 4
-            континентов, самому взрослому студенту сейчас 86 лет. Выпускники
-            работают в Сбере, Cisco, Bayer, Nvidia, МТС, Ростелекоме, Mail.ru,
-            Яндексе, Ozon и других топовых компаниях. Принципы SkillFactory:
-            акцент на практике, забота о студентах и ориентир на
-            трудоустройство. 80% обучения — выполнение упражнений и реальных
-            проектов. Каждого студента поддерживают менторы, 2 саппорт-линии и
-            комьюнити курса. А карьерный центр помогает составить резюме,
-            подготовиться к собеседованиям и познакомиться с IT-рекрутерами.
-          </p>
-          <div className={styles["main_articles-list-item-footer"]}>
-            <button className={styles["main_articles-list-item-footer-button"]}>
-              Читать в источнике
-            </button>
-            <p className={styles["main_articles-list-item-footer-words"]}>
-              2 543 слова
-            </p>
-          </div>
-        </li>
-      </ul>
-      <button className={styles["main_articles-load-button"]}>
-        Показать больше
-      </button>
+      {loadingDocuments ? (
+        <Loader />
+      ) : documents ? (
+        <>
+          <ul className={styles["main_articles-list"]}>
+            {documents.map((document) => (
+              <ArticleCard key={document.ok?.id} document={document} />
+            ))}
+          </ul>
+          <button
+            className={styles["main_articles-load-button"]}
+            disabled={loadingDocuments}
+            onClick={loadMoreDocuments}
+          >
+            Показать больше
+          </button>
+        </>
+      ) : (
+        <p>Статьи не найдены</p>
+      )}
     </section>
   );
 }
