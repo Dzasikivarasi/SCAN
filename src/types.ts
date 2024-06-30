@@ -42,15 +42,6 @@ export interface HistogramDataPoint {
   value: number;
 }
 
-// export interface Histogram {
-//   data: HistogramDataPoint[];
-//   histogramType: "totalDocuments" | "riskFactors";
-// }
-
-// export interface HistogramResponse {
-//   data: Histogram[];
-// }
-
 export interface HistogramDataPoint {
   date: string;
   value: number;
