@@ -2,16 +2,23 @@ import { CurrentTarif } from "./current-tarif";
 import styles from "../main-page.module.scss";
 import { TarifType } from "../../../types";
 import { Button } from "./button";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
+import { AuthorizationStatus } from "../../../constants";
 
 type TarifCardProps = {
   item: TarifType;
 };
 
 export function TarifCard({ item }: TarifCardProps): JSX.Element {
+  const authStatus = useSelector((state: RootState) => state.user.authStatus);
+
   return (
     <li
       className={`${styles["main_tarif-list-item"]} ${styles[item.type]} ${
-        item.active ? styles.active : ""
+        authStatus === AuthorizationStatus.Auth && item.active
+          ? styles.active
+          : ""
       }`}
     >
       <div
@@ -40,7 +47,9 @@ export function TarifCard({ item }: TarifCardProps): JSX.Element {
             ? `или ${item.installment} ₽/мес. при рассрочке на 24 мес.`
             : "Рассрочка не предусмотрена"}
         </p>
-        {item.active && <CurrentTarif />}
+        {authStatus === AuthorizationStatus.Auth && item.active && (
+          <CurrentTarif />
+        )}
       </div>
       <div className={styles["main_tarif-list-item-points"]}>
         <p className={styles["main_tarif-list-item-points-title"]}>

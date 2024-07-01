@@ -1,4 +1,7 @@
+import { useSelector } from "react-redux";
 import styles from "../main-page.module.scss";
+import { RootState } from "../../../store/store";
+import { AuthorizationStatus } from "../../../constants";
 
 type ButtonProps = {
   className: string;
@@ -13,6 +16,7 @@ export function Button({
   buttonText,
   buttonClickHandler,
 }: ButtonProps): JSX.Element {
+  const authStatus = useSelector((state: RootState) => state.user.authStatus);
   const onButtonClick = () => {
     if (buttonClickHandler) {
       buttonClickHandler();
@@ -21,7 +25,11 @@ export function Button({
 
   return (
     <button
-      className={`${styles[className]} ${classActive ? styles.active : ""}`}
+      className={`${styles[className]} ${
+        authStatus === AuthorizationStatus.Auth && classActive
+          ? styles.active
+          : ""
+      }`}
       onClick={onButtonClick}
     >
       {buttonText}
