@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getLimits } from "../../store/userProcessSlice";
+import { getLimits } from "../../store/user/user-process-slice";
 import { AppDispatch, RootState } from "../../store/store";
 import Loader from "../loader";
+import { DEFAULT_LIMITS } from "../../constants";
 
 export default function Limits(): JSX.Element {
   const dispatch: AppDispatch = useDispatch();
@@ -15,7 +16,6 @@ export default function Limits(): JSX.Element {
 
   useEffect(() => {
     dispatch(getLimits());
-    console.log("LIMITS в компоненте", eventFiltersInfo);
   }, [dispatch]);
 
   return (
@@ -30,12 +30,12 @@ export default function Limits(): JSX.Element {
               {eventFiltersInfo &&
               eventFiltersInfo.usedCompanyCount !== undefined
                 ? eventFiltersInfo.usedCompanyCount
-                : 0}
+                : DEFAULT_LIMITS}
             </span>
           </p>
           <p className="header_menu-limits-limit">
             Лимит по компаниям{" "}
-            <span>{eventFiltersInfo?.companyLimit || 100}</span>
+            <span>{eventFiltersInfo?.companyLimit || DEFAULT_LIMITS}</span>
           </p>
         </>
       )}

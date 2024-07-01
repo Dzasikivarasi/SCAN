@@ -297,7 +297,6 @@ body {
         padding: 15px;
       }
 
-      // Чтобы открыть меню-бургер, добавляем этот класс
       &.opened {
         transform: translateX(0);
       }

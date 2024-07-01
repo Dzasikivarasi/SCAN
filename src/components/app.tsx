@@ -7,7 +7,10 @@ import { SearchPage } from "../pages/search-page/search-page";
 import { RootState } from "../store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { checkTokenValidity, setAuthStatus } from "../store/userProcessSlice";
+import {
+  checkTokenValidity,
+  setAuthStatus,
+} from "../store/user/user-process-slice";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AppRoute } from "../constants";
 import PrivateRoute from "./private-route";

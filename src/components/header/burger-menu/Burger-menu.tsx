@@ -6,7 +6,7 @@ export default function BurgerMenu(): JSX.Element {
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
 
   const menuOpenHandler = () => {
-    setMenuIsOpen((prev) => !prev);
+    setMenuIsOpen(true);
   };
 
   const menuCloseHandler = () => {

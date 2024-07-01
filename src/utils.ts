@@ -1,12 +1,22 @@
 import { toast } from "react-toastify";
 import { format } from "date-fns";
 import { HistogramResponse } from "./types";
+import {
+  CONTROL_NUM_INN_ERROR,
+  EMPTY_INN_ERROR,
+  LENGTH_INN_ERROR,
+  MAX_DOCUMENTS_NUMBER,
+  PASSWORD_ERROR,
+  RESULT_LENGTH_ERROR,
+  STRUCTURE_INN_ERROR,
+  WRONG_DATA_ERROR,
+} from "./constants";
 
 export const validateForm = (password: string): boolean => {
   const hasLetter = /[a-zA-Z]/.test(password);
   const hasNumber = /\d/.test(password);
   if (!hasLetter || !hasNumber) {
-    toast.error("Пароль должен содержать хотя бы одну букву и цифру.");
+    toast.error(PASSWORD_ERROR);
     return false;
   }
   return true;
@@ -22,11 +32,11 @@ export const validateInn = (inn: string | number): string | null => {
   }
 
   if (!inn.length) {
-    return "ИНН пуст";
+    return EMPTY_INN_ERROR;
   } else if (/[^0-9]/.test(inn)) {
-    return "ИНН может состоять только из цифр";
+    return STRUCTURE_INN_ERROR;
   } else if (inn.length !== 10) {
-    return "ИНН может состоять только из 10 цифр";
+    return LENGTH_INN_ERROR;
   } else {
     const checkDigit = (inn: string, coefficients: number[]): number => {
       let n = 0;
@@ -40,7 +50,7 @@ export const validateInn = (inn: string | number): string | null => {
     if (n10 === parseInt(inn[9])) {
       return null;
     } else {
-      return "Ошибка контрольного числа";
+      return CONTROL_NUM_INN_ERROR;
     }
   }
 };
@@ -52,10 +62,10 @@ export const validateDate = (
   const today = new Date().toISOString().split("T")[0];
 
   if (dateFrom > today || dateTo > today) {
-    return "Введите корректные данные";
+    return WRONG_DATA_ERROR;
   }
   if (dateFrom && dateTo && dateFrom > dateTo) {
-    return "Введите корректные данные";
+    return WRONG_DATA_ERROR;
   }
   return null;
 };
@@ -66,9 +76,9 @@ export const validateResultsCount = (resultsCount: string): string | null => {
   if (
     isNaN(resultsCountNumber) ||
     resultsCountNumber < 1 ||
-    resultsCountNumber > 1000
+    resultsCountNumber > MAX_DOCUMENTS_NUMBER
   ) {
-    return "Количество от 1 до 1000";
+    return RESULT_LENGTH_ERROR;
   }
   return null;
 };

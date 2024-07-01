@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import Login from "../login";
 import Navigation from "../navigation";
 import BurgerHeader from "./burger-header";
+import { RootState } from "../../../store/store";
+import { AuthorizationStatus } from "../../../constants";
 
 type BurgerDropdown = {
   menuIsOpen: boolean;
@@ -11,6 +14,8 @@ export default function BurgerDropdown({
   menuIsOpen,
   menuCloseHandler,
 }: BurgerDropdown): JSX.Element {
+  const authStatus = useSelector((state: RootState) => state.user.authStatus);
+
   return (
     <div
       className={`header_menu-burger-dropdown ${
@@ -21,12 +26,16 @@ export default function BurgerDropdown({
       <Navigation
         classList="header_menu-burger-dropdown-menu"
         classItem="header_menu-burger-dropdown-menu-item"
+        menuCloseHandler={menuCloseHandler}
       />
-      <Login
-        classLogin="header_menu-burger-dropdown-menu-login"
-        classLink="header_menu-burger-dropdown-menu-login-signin"
-        classButton="header_menu-burger-dropdown-menu-login-button"
-      />
+      {authStatus !== AuthorizationStatus.Auth && (
+        <Login
+          classLogin="header_menu-burger-dropdown-menu-login"
+          classLink="header_menu-burger-dropdown-menu-login-signin"
+          classButton="header_menu-burger-dropdown-menu-login-button"
+          menuCloseHandler={menuCloseHandler}
+        />
+      )}
     </div>
   );
 }

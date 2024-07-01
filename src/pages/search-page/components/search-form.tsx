@@ -7,13 +7,13 @@ import {
   validateResultsCount,
 } from "../../../utils";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchHistograms } from "../../../store/histogramProcessSlice";
 import { AppDispatch, RootState } from "../../../store/store";
 import { AppRoute, LOAD_ERROR } from "../../../constants";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { fetchObjectsIDs } from "../../../store/objectsProcessSlice";
-import { getLimits } from "../../../store/userProcessSlice";
+import { getLimits } from "../../../store/user/user-process-slice";
+import { fetchHistograms } from "../../../store/histogram/histogram-process-api";
+import { fetchObjectsIDs } from "../../../store/ids/ids-process-api";
 
 export function SearchForm(): JSX.Element {
   const [inputType, setInputType] = useState("text");
@@ -49,7 +49,6 @@ export function SearchForm(): JSX.Element {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("кнопка сработала");
 
     const { inn, results, dateFrom, dateTo } = formData;
     let valid = true;
@@ -87,7 +86,6 @@ export function SearchForm(): JSX.Element {
       results: parseInt(formData.results, 10),
     };
 
-    console.log(searchData);
     dispatch(fetchHistograms(searchData))
       .then((response) => {
         if (response.meta.requestStatus === "rejected") {

@@ -2,24 +2,26 @@ import styles from "../main-page.module.scss";
 
 type ButtonProps = {
   className: string;
-  classActive?: string;
+  classActive?: boolean;
   buttonText: string;
-  buttonClickHandler: () => void;
+  buttonClickHandler?: () => void;
 };
 
 export function Button({
   className,
-  classActive = "",
+  classActive = false,
   buttonText,
   buttonClickHandler,
 }: ButtonProps): JSX.Element {
   const onButtonClick = () => {
-    buttonClickHandler();
+    if (buttonClickHandler) {
+      buttonClickHandler();
+    }
   };
 
   return (
     <button
-      className={`${styles[className]} ${classActive}`}
+      className={`${styles[className]} ${classActive ? styles.active : ""}`}
       onClick={onButtonClick}
     >
       {buttonText}

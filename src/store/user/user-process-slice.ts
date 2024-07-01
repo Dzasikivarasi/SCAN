@@ -1,13 +1,6 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
-import {
-  AuthorizationStatus,
-  BACKEND_URL,
-  LIMITS_ENDPOINT,
-  LOAD_ERROR,
-  LOGIN_ENDPOINT,
-} from "../constants";
-import { AuthData, AuthResponse, UserLimits } from "../types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AuthorizationStatus, LOAD_ERROR } from "../../constants";
+import { AuthResponse, UserLimits } from "../../types";
 import {
   saveToken,
   dropToken,
@@ -17,8 +10,9 @@ import {
   getUser,
   dropUser,
   saveUser,
-} from "../services/localstorage-data";
+} from "../../services/localstorage-data";
 import { toast } from "react-toastify";
+import { getLimits, loginAction, setLogoutTimer } from "./user-process-api";
 
 interface UserInitialStateType {
   user: string;
@@ -48,60 +42,10 @@ const checkTokenValidity = (
   if (!token || tokenExpireTime < currentTime) {
     dropToken();
     dropUser();
-    console.log("токен сброшен");
     return AuthorizationStatus.NoAuth;
   }
-  console.log("токен актуален");
   return AuthorizationStatus.Auth;
 };
-
-const loginAction = createAsyncThunk(
-  "user/login",
-  async (authData: AuthData) => {
-    const response = await axios.post<AuthResponse>(
-      `${BACKEND_URL}${LOGIN_ENDPOINT}`,
-      authData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      }
-    );
-    return response.data;
-  }
-);
-
-const setLogoutTimer = (expireTime: string, logoutCallback: () => void) => {
-  const expireDate = new Date(expireTime).getTime();
-  const currentDate = new Date().getTime();
-  const timeout = expireDate - currentDate;
-
-  setTimeout(logoutCallback, timeout);
-};
-
-const getLimits = createAsyncThunk("user/limits", async () => {
-  const token = getToken();
-  if (!token) {
-    console.log("Нет авторизации, нет лимитов");
-    return null;
-  }
-  try {
-    const response = await axios.get<{ eventFiltersInfo: UserLimits }>(
-      `${BACKEND_URL}${LIMITS_ENDPOINT}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    console.log("LIMITS", response.data);
-    return response.data.eventFiltersInfo;
-  } catch (error) {
-    console.error("Ошибка при запросе лимитов:", error);
-    throw error;
-  }
-});
 
 const userSlice = createSlice({
   name: "user",

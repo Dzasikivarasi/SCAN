@@ -11,7 +11,7 @@ export function TarifCard({ item }: TarifCardProps): JSX.Element {
   return (
     <li
       className={`${styles["main_tarif-list-item"]} ${styles[item.type]} ${
-        styles.active
+        item.active ? styles.active : ""
       }`}
     >
       <div
@@ -40,7 +40,7 @@ export function TarifCard({ item }: TarifCardProps): JSX.Element {
             ? `или ${item.installment} ₽/мес. при рассрочке на 24 мес.`
             : "Рассрочка не предусмотрена"}
         </p>
-        <CurrentTarif />
+        {item.active && <CurrentTarif />}
       </div>
       <div className={styles["main_tarif-list-item-points"]}>
         <p className={styles["main_tarif-list-item-points-title"]}>
@@ -54,17 +54,10 @@ export function TarifCard({ item }: TarifCardProps): JSX.Element {
       </div>
       <Button
         className="main_tarif-list-item-button"
-        // classActive={styles.active} чтобы включить activ надо его передать
+        classActive={item.active}
+        // classActive={styles.active} передать чтобы включить active
         buttonText="Подробнее"
       />
     </li>
   );
-}
-
-{
-  /* <button
-className={`${styles["main_tarif-list-item-button"]} ${styles.active}`}
->
-Подробнее
-</button> */
 }

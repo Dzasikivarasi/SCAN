@@ -1,18 +1,8 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { RootState } from "./store";
-import { HistogramRequestData, HistogramResponse } from "../types";
-import { BACKEND_URL, HISTOGRAMS_ENDPOINT } from "../constants";
-
-interface HistogramState {
-  histogramData: HistogramResponse;
-  loading: boolean;
-}
-
-const initialState: HistogramState = {
-  histogramData: { data: [] },
-  loading: false,
-};
+import { BACKEND_URL, HISTOGRAMS_ENDPOINT } from "../../constants";
+import { HistogramRequestData, HistogramResponse } from "../../types";
+import { RootState } from "../store";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchHistograms = createAsyncThunk(
   "histograms/fetchHistograms",
@@ -86,31 +76,6 @@ export const fetchHistograms = createAsyncThunk(
         },
       }
     );
-    console.log(response.data);
     return response.data;
   }
 );
-
-const histogramsSlice = createSlice({
-  name: "histograms",
-  initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchHistograms.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(
-        fetchHistograms.fulfilled,
-        (state, action: PayloadAction<HistogramResponse>) => {
-          state.loading = false;
-          state.histogramData = action.payload;
-        }
-      )
-      .addCase(fetchHistograms.rejected, (state) => {
-        state.loading = false;
-      });
-  },
-});
-
-export default histogramsSlice.reducer;

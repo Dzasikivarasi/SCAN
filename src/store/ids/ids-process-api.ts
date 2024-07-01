@@ -1,18 +1,8 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { HistogramRequestData, ObjectsIDsResponse } from "../../types";
+import { RootState } from "../store";
 import axios from "axios";
-import { RootState } from "./store";
-import { HistogramRequestData, ObjectsIDsResponse } from "../types";
-import { BACKEND_URL, OBJECTSEARCH_ENDPOINT } from "../constants";
-
-interface ObjectsIDsState {
-  ids: string[];
-  loading: boolean;
-}
-
-const initialState: ObjectsIDsState = {
-  ids: [],
-  loading: false,
-};
+import { BACKEND_URL, OBJECTSEARCH_ENDPOINT } from "../../constants";
 
 export const fetchObjectsIDs = createAsyncThunk<string[], HistogramRequestData>(
   "objectsIDs/fetchObjectsIDs",
@@ -84,35 +74,6 @@ export const fetchObjectsIDs = createAsyncThunk<string[], HistogramRequestData>(
         },
       }
     );
-    console.log(response.data);
-
     return response.data.items.map((item) => item.encodedId);
   }
 );
-
-const objectsIDsSlice = createSlice({
-  name: "objectsIDs",
-  initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchObjectsIDs.pending, (state) => {
-        state.loading = true;
-        console.log("fetchObjectsIDs pending");
-      })
-      .addCase(
-        fetchObjectsIDs.fulfilled,
-        (state, action: PayloadAction<string[]>) => {
-          state.loading = false;
-          state.ids = action.payload;
-          console.log("fetchObjectsIDs fulfilled", action.payload);
-        }
-      )
-      .addCase(fetchObjectsIDs.rejected, (state) => {
-        state.loading = false;
-        console.log("fetchObjectsIDs rejected");
-      });
-  },
-});
-
-export default objectsIDsSlice.reducer;

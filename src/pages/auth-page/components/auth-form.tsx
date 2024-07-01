@@ -8,7 +8,7 @@ import { validateForm } from "../../../utils";
 import { AuthData } from "../../../types";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store/store";
-import { loginAction, setUser } from "../../../store/userProcessSlice";
+import { loginAction, setUser } from "../../../store/user/user-process-slice";
 import { useNavigate } from "react-router-dom";
 
 export function AuthForm(): JSX.Element {
@@ -121,9 +121,3 @@ export function AuthForm(): JSX.Element {
     </div>
   );
 }
-
-// useEffect(() => {
-//   if (authStatus === AuthorizationStatus.Auth) {
-//     navigate(AppRoute.Main);
-//   }
-// }, [authStatus, navigate]);

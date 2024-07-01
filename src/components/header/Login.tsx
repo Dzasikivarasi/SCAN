@@ -5,16 +5,21 @@ type LoginProps = {
   classLogin: string;
   classLink: string;
   classButton: string;
+  menuCloseHandler?: () => void;
 };
 
 export default function Login({
   classLogin,
   classLink,
   classButton,
+  menuCloseHandler,
 }: LoginProps): JSX.Element {
   const navigate = useNavigate();
 
   const onButtonClick = () => {
+    {
+      menuCloseHandler && menuCloseHandler();
+    }
     navigate(AppRoute.Auth);
   };
 

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import { logout } from "../../store/userProcessSlice";
+import { logout } from "../../store/user/user-process-slice";
 import Loader from "../loader";
 
 export default function User(): JSX.Element {

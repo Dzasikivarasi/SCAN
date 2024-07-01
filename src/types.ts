@@ -7,6 +7,7 @@ export type TarifType = {
   installment?: number | null;
   options: string[];
   type: string;
+  active: boolean;
 };
 
 export type LoginSourceItemType = {
@@ -37,41 +38,36 @@ export type HistogramRequestData = {
   dateTo: string;
 };
 
-export interface HistogramDataPoint {
+export type HistogramDataPoint = {
   date: string;
   value: number;
-}
+};
 
-export interface HistogramDataPoint {
-  date: string;
-  value: number;
-}
-
-export interface HistogramTypeData {
+export type HistogramTypeData = {
   data: HistogramDataPoint[];
   histogramType: "totalDocuments" | "riskFactors";
-}
+};
 
-export interface HistogramResponse {
+export type HistogramResponse = {
   data: HistogramTypeData[];
-}
+};
 
-export interface SearchResultItem {
+export type SearchResultItem = {
   encodedId: string;
   influence: number;
   similarCount: number;
-}
+};
 
-export interface ObjectsIDsResponse {
+export type ObjectsIDsResponse = {
   items: SearchResultItem[];
   mappings: unknown[];
-}
+};
 
-export interface DocumentRequestData {
+export type DocumentRequestData = {
   ids: string[];
-}
+};
 
-export interface DocumentResponseItem {
+export type DocumentResponseItem = {
   ok?: {
     schemaVersion: string;
     id: string;
@@ -116,10 +112,10 @@ export interface DocumentResponseItem {
     errorCode: string;
     errorMessage: string;
   };
-}
+};
 
-export interface DataCells {
+export type DataCells = {
   data: HistogramTypeData | undefined;
-}
+};
 
 export interface DocumentResponse extends Array<DocumentResponseItem> {}
