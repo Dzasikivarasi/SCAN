@@ -55,7 +55,6 @@ export function TarifCard({ item }: TarifCardProps): JSX.Element {
       <Button
         className="main_tarif-list-item-button"
         classActive={item.active}
-        // classActive={styles.active} передать чтобы включить active
         buttonText="Подробнее"
       />
     </li>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { LoginSourceItem } from "../../../constants";
 import { LoginSourceItemType } from "../../../types";
 import styles from "../auth-page.module.scss";
@@ -9,12 +10,12 @@ export function LoginSource(): JSX.Element {
       <ul className={styles["main_banner-form-body-login-via-list"]}>
         {LoginSourceItem.map((item: LoginSourceItemType) => (
           <li key={item.name}>
-            <a
+            <Link
               className={styles["main_banner-form-body-login-via-list-item"]}
-              href={item.url}
+              to={item.url}
             >
               <img src={item.image} alt={item.name} />
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

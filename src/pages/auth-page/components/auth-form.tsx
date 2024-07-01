@@ -9,7 +9,7 @@ import { AuthData } from "../../../types";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store/store";
 import { loginAction, setUser } from "../../../store/user/user-process-slice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function AuthForm(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -113,9 +113,12 @@ export function AuthForm(): JSX.Element {
           disabled={buttonDisable || isSubmitting}
         />
 
-        <a href="#" className={styles["main_banner-form-body-forgot-password"]}>
+        <Link
+          to="#"
+          className={styles["main_banner-form-body-forgot-password"]}
+        >
           Восстановить пароль
-        </a>
+        </Link>
         <LoginSource />
       </form>
     </div>
