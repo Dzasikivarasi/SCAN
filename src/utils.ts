@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 import { format } from "date-fns";
+import { HistogramResponse } from "./types";
 
 export const validateForm = (password: string): boolean => {
   const hasLetter = /[a-zA-Z]/.test(password);
@@ -85,4 +86,19 @@ export const formatWordCount = (number: number, word: string) => {
 export const formatDate = (dateString: string) => {
   const date = new Date(dateString);
   return format(date, "dd.MM.yyyy");
+};
+
+export const sumValuesByType = (
+  histogramData: HistogramResponse,
+  type: string
+) => {
+  const item = histogramData.data.find((item) => item.histogramType === type);
+  if (!item) {
+    return 0;
+  }
+  const totalValue = item.data.reduce(
+    (sum, currentItem) => sum + currentItem.value,
+    0
+  );
+  return totalValue;
 };

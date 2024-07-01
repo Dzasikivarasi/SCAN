@@ -124,3 +124,5 @@ export enum AuthorizationStatus {
 
 export const AUTH_ERROR = "Ошибка авторизации";
 export const LOAD_ERROR = "Ошибка загрузки данных";
+
+export const HISTOGRAM_SCROLL_STEP = 100;

@@ -13,6 +13,7 @@ import { AppRoute, LOAD_ERROR } from "../../../constants";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { fetchObjectsIDs } from "../../../store/objectsProcessSlice";
+import { getLimits } from "../../../store/userProcessSlice";
 
 export function SearchForm(): JSX.Element {
   const [inputType, setInputType] = useState("text");
@@ -93,6 +94,7 @@ export function SearchForm(): JSX.Element {
           toast.error(LOAD_ERROR);
           return;
         } else {
+          dispatch(getLimits());
           navigate(AppRoute.Results);
         }
       })

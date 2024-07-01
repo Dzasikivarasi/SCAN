@@ -1,5 +1,6 @@
 const TOKEN_KEY = "authToken";
 const TOKEN_EXPIRE_TIME_KEY = "tokenExpireTime";
+const USER_NAME = "user";
 
 export type Token = string;
 
@@ -23,4 +24,16 @@ export const getTokenExpireTime = (): string | null => {
 
 export const saveTokenExpireTime = (expireTime: string): void => {
   localStorage.setItem(TOKEN_EXPIRE_TIME_KEY, expireTime);
+};
+
+export const getUser = (): string => {
+  return localStorage.getItem(USER_NAME) ?? "";
+};
+
+export const saveUser = (user: string): void => {
+  localStorage.setItem(USER_NAME, user);
+};
+
+export const dropUser = (): void => {
+  localStorage.removeItem(USER_NAME);
 };

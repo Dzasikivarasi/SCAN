@@ -1,8 +1,6 @@
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
-import { getToken } from "./token";
-
-const BACKEND_URL = "https://gateway.scan-interfax.ru";
-const REQUEST_TIMEOUT = 5000;
+import { getToken } from "./localstorage-data";
+import { BACKEND_URL, REQUEST_TIMEOUT } from "../constants";
 
 export const createAPI = (): AxiosInstance => {
   const api = axios.create({

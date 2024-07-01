@@ -9,14 +9,14 @@ export default function Limits(): JSX.Element {
   const loadingLimits = useSelector(
     (state: RootState) => state.user.loadingLimits
   );
-
-  useEffect(() => {
-    dispatch(getLimits());
-  }, [dispatch]);
-
   const eventFiltersInfo = useSelector(
     (state: RootState) => state.user.eventFiltersInfo
   );
+
+  useEffect(() => {
+    dispatch(getLimits());
+    console.log("LIMITS в компоненте", eventFiltersInfo);
+  }, [dispatch]);
 
   return (
     <div className="header_menu-limits">
@@ -26,7 +26,12 @@ export default function Limits(): JSX.Element {
         <>
           <p className="header_menu-limits-used">
             Использовано компаний{" "}
-            <span>{eventFiltersInfo?.usedCompanyCount || 34}</span>
+            <span>
+              {eventFiltersInfo &&
+              eventFiltersInfo.usedCompanyCount !== undefined
+                ? eventFiltersInfo.usedCompanyCount
+                : 0}
+            </span>
           </p>
           <p className="header_menu-limits-limit">
             Лимит по компаниям{" "}

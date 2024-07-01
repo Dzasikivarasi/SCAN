@@ -14,7 +14,10 @@ import {
   getToken,
   getTokenExpireTime,
   saveTokenExpireTime,
-} from "../services/token";
+  getUser,
+  dropUser,
+  saveUser,
+} from "../services/localstorage-data";
 import { toast } from "react-toastify";
 
 interface UserInitialStateType {
@@ -27,7 +30,7 @@ interface UserInitialStateType {
 }
 
 const initialState: UserInitialStateType = {
-  user: "",
+  user: getUser(),
   accessToken: getToken(),
   tokenExpireTime: getTokenExpireTime(),
   authStatus: AuthorizationStatus.Unknown,
@@ -44,6 +47,7 @@ const checkTokenValidity = (
 
   if (!token || tokenExpireTime < currentTime) {
     dropToken();
+    dropUser();
     console.log("токен сброшен");
     return AuthorizationStatus.NoAuth;
   }
@@ -83,7 +87,7 @@ const getLimits = createAsyncThunk("user/limits", async () => {
     return null;
   }
   try {
-    const response = await axios.get<UserLimits>(
+    const response = await axios.get<{ eventFiltersInfo: UserLimits }>(
       `${BACKEND_URL}${LIMITS_ENDPOINT}`,
       {
         headers: {
@@ -91,7 +95,8 @@ const getLimits = createAsyncThunk("user/limits", async () => {
         },
       }
     );
-    return response.data;
+    console.log("LIMITS", response.data);
+    return response.data.eventFiltersInfo;
   } catch (error) {
     console.error("Ошибка при запросе лимитов:", error);
     throw error;
@@ -108,9 +113,11 @@ const userSlice = createSlice({
       state.accessToken = null;
       state.tokenExpireTime = null;
       dropToken();
+      dropUser();
     },
     setUser: (state, action: PayloadAction<string>) => {
       state.user = action.payload;
+      saveUser(action.payload);
     },
     setAuthStatus: (state, action: PayloadAction<AuthorizationStatus>) => {
       state.authStatus = action.payload;
@@ -134,6 +141,7 @@ const userSlice = createSlice({
             state.authStatus = AuthorizationStatus.NoAuth;
             state.accessToken = null;
             state.tokenExpireTime = null;
+            dropUser();
             dropToken();
           });
         }
