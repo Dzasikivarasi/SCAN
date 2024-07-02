@@ -2,27 +2,27 @@
 
 .main {
   padding: 70px 0 65px;
-  background: url("img/search_banner-folder.svg") no-repeat 95% 15%,
-    url("img/search_banner-file.svg") no-repeat 68% 20%,
-    url("img/search_banner.svg") no-repeat 100% 85%;
+  background: url("/SCAN/img/search_banner-folder.svg") no-repeat 95% 15%,
+    url("/SCAN/img/search_banner-file.svg") no-repeat 68% 20%,
+    url("/SCAN/img/search_banner.svg") no-repeat 100% 85%;
 
   @media (max-width: 1400px) {
     padding: 70px 0 550px;
-    background: url("img/search_banner-folder.svg") no-repeat 95% 9%,
-      url("img/search_banner-file.svg") no-repeat 68% 13%,
-      url("img/search_banner.svg") no-repeat 30% 95%;
+    background: url("/SCAN/img/search_banner-folder.svg") no-repeat 95% 9%,
+      url("/SCAN/img/search_banner-file.svg") no-repeat 68% 13%,
+      url("/SCAN/img/search_banner.svg") no-repeat 30% 95%;
   }
 
   @media (max-width: 890px) {
     padding: 20px 0 550px;
-    background: url("img/search_banner-file.svg") no-repeat 100% 7%,
-      url("img/search_banner.svg") no-repeat 30% 95%;
+    background: url("/SCAN/img/search_banner-file.svg") no-repeat 100% 7%,
+      url("/SCAN/img/search_banner.svg") no-repeat 30% 95%;
   }
 
   @media (max-width: 500px) {
     padding: 20px 0 510px;
-    background: url("img/search_banner-file.svg") no-repeat 100% 9%,
-      url("img/search_banner.svg") no-repeat 30% 100%;
+    background: url("/SCAN/img/search_banner-file.svg") no-repeat 100% 9%,
+      url("/SCAN/img/search_banner.svg") no-repeat 30% 100%;
     background-size: 20%, 100%;
   }
 
@@ -176,7 +176,7 @@
             &::before {
               position: absolute;
               content: "";
-              background-image: url("img/search_checkbox.svg");
+              background-image: url("/SCAN/img/search_checkbox.svg");
               background-repeat: no-repeat;
               top: 10%;
               left: 10%;

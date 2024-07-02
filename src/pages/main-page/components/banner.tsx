@@ -34,7 +34,7 @@ export function Banner(): JSX.Element {
           />
         )}
       </div>
-      <img src="img/main_banner.svg" alt="баннер" />
+      <img src="/SCAN/img/main_banner.svg" alt="баннер" />
     </section>
   );
 }

@@ -15,6 +15,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AppRoute } from "../constants";
 import PrivateRoute from "./private-route";
 import { ResultPage } from "../pages/results-page/results-page";
+import { NotFound } from "../pages/not-found/not-found";
 
 export function App(): JSX.Element {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export function App(): JSX.Element {
   }, []);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/SCAN/">
       <ToastContainer />
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -49,6 +50,7 @@ export function App(): JSX.Element {
             }
           />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

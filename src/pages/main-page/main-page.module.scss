@@ -68,17 +68,17 @@
 
   &_privilege {
     padding-bottom: 750px;
-    background: url("img/main_middle-2.svg") no-repeat 0% 80%;
+    background: url("/SCAN/img/main_middle-2.svg") no-repeat 0% 80%;
 
     @media (max-width: 600px) {
       padding-bottom: 650px;
-      background: url("img/main_middle.svg") no-repeat 0% 80%;
+      background: url("/SCAN/img/main_middle.svg") no-repeat 0% 80%;
       background-size: 100%;
     }
 
     @media (max-width: 500px) {
       padding-bottom: 450px;
-      background: url("img/main_middle.svg") no-repeat 0% 90%;
+      background: url("/SCAN/img/main_middle.svg") no-repeat 0% 90%;
       background-size: 100%;
     }
 
@@ -99,12 +99,12 @@
       width: 100%;
 
       &-arrow-left {
-        @include arrow-button("img/main_arrow-left.svg");
+        @include arrow-button("/SCAN/img/main_arrow-left.svg");
         margin-right: 10px;
       }
 
       &-arrow-right {
-        @include arrow-button("img/main_arrow-right.svg");
+        @include arrow-button("/SCAN/img/main_arrow-right.svg");
         margin-left: 10px;
       }
       &-arrow-left:disabled,
@@ -134,15 +134,15 @@
           margin-left: 15px;
 
           &.item1 {
-            background-image: url("img/main_privilege-1.svg");
+            background-image: url("/SCAN/img/main_privilege-1.svg");
           }
 
           &.item2 {
-            background-image: url("img/main_privilege-2.svg");
+            background-image: url("/SCAN/img/main_privilege-2.svg");
           }
 
           &.item3 {
-            background-image: url("img/main_privilege-3.svg");
+            background-image: url("/SCAN/img/main_privilege-3.svg");
           }
         }
       }
@@ -188,17 +188,17 @@
           border-top-right-radius: 10px;
 
           &.beginner {
-            background-image: url("img/main_tarif-1.svg");
+            background-image: url("/SCAN/img/main_tarif-1.svg");
             background-color: $yellow;
           }
 
           &.pro {
-            background-image: url("img/main_tarif-2.svg");
+            background-image: url("/SCAN/img/main_tarif-2.svg");
             background-color: $light-green;
           }
 
           &.business {
-            background-image: url("img/main_tarif-3.svg");
+            background-image: url("/SCAN/img/main_tarif-3.svg");
             background-color: $black;
             color: $white;
           }
@@ -274,7 +274,7 @@
               &::before {
                 content: "";
                 position: absolute;
-                background-image: url("img/main_tarif-point.svg");
+                background-image: url("/SCAN/img/main_tarif-point.svg");
                 top: 20%;
                 left: 0;
                 width: 20px;

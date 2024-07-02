@@ -70,7 +70,7 @@ export function Histogram(): JSX.Element {
           className={styles["main_results-container-arrow-left"]}
           onClick={handleScrollLeft}
         >
-          <img src="public/img/main_arrow-left.svg" alt="swipe left" />
+          <img src="/SCAN/img/main_arrow-left.svg" alt="swipe left" />
         </div>
         <div
           ref={tableContainerRef}
@@ -115,7 +115,7 @@ export function Histogram(): JSX.Element {
           className={styles["main_results-container-arrow-right"]}
           onClick={handleScrollRight}
         >
-          <img src="public/img/main_arrow-right.svg" alt="swipe right" />
+          <img src="/SCAN/img/main_arrow-right.svg" alt="swipe right" />
         </div>
       </div>
     </section>

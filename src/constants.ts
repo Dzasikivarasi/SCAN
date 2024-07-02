@@ -121,17 +121,17 @@ export const CheckboxItems = [
 export const LoginSourceItem = [
   {
     name: "Google",
-    image: "public/img/auth-main-google.svg",
+    image: "/SCAN/img/auth-main-google.svg",
     url: "#",
   },
   {
     name: "Facebook",
-    image: "public/img/auth-main-facebook.svg",
+    image: "/SCAN/img/auth-main-facebook.svg",
     url: "#",
   },
   {
     name: "Yandex",
-    image: "public/img/auth-main-yandex.svg",
+    image: "/SCAN/img/auth-main-yandex.svg",
     url: "#",
   },
 ];

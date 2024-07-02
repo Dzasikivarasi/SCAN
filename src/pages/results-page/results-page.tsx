@@ -12,7 +12,7 @@ export function ResultPage(): JSX.Element {
             Поиск может занять некоторое время, просим сохранять терпение.
           </p>
         </div>
-        <img src="public/img/results_banner.svg" alt="banner" />
+        <img src="/SCAN/img/results_banner.svg" alt="banner" />
       </section>
       <Histogram />
       <Articles />

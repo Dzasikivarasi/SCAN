@@ -2,11 +2,11 @@
 
 .main {
   padding: 70px 0 80px;
-  background: url("img/auth-main-banner.svg") no-repeat 8% 75%;
+  background: url("/SCAN/img/auth-main-banner.svg") no-repeat 8% 75%;
 
   @media (max-width: 1050px) {
     padding: 30px 0 450px;
-    background: url("img/auth-main-banner.svg") no-repeat 8% 95%;
+    background: url("/SCAN/img/auth-main-banner.svg") no-repeat 8% 95%;
   }
 
   &_banner {
@@ -47,7 +47,7 @@
         content: "";
         position: absolute;
         z-index: 1;
-        background-image: url("img/auth-main-form-lock.svg");
+        background-image: url("/SCAN/img/auth-main-form-lock.svg");
         top: -10%;
         left: -10%;
         width: 75px;

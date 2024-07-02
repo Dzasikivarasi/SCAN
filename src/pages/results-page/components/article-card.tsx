@@ -42,7 +42,7 @@ export function ArticleCard({ document }: ArticleCardProps): JSX.Element {
       <div className={styles["main_articles-list-item-banner"]}>
         <img
           className={styles["main_articles-list-item-banner"]}
-          src="public/img/results_articles-image-1.jpg"
+          src="/SCAN/img/results_articles-image-1.jpg"
           alt="Article illustration"
         />
       </div>

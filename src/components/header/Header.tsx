@@ -13,7 +13,7 @@ export default function Header(): JSX.Element {
 
   return (
     <header className="header">
-      <Logo className="header_logo" url="public/img/header-logo-color.svg" />
+      <Logo className="header_logo" url="/SCAN/img/header-logo-color.svg" />
       <div className="header_menu">
         <Navigation
           classList="header_menu-navigation-list"

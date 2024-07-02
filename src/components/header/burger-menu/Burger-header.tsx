@@ -13,7 +13,7 @@ export default function BurgerHeader({
     <div className="header_menu-burger-dropdown-top">
       <img
         className="header_menu-burger-dropdown-logo"
-        src="public/img/header-logo-white.svg"
+        src="/SCAN/img/header-logo-white.svg"
         alt="логотип"
       />
       <svg

@@ -32,7 +32,7 @@ export default function User(): JSX.Element {
           </div>
           <img
             className="header_menu-user-foto"
-            src="public/img/header-empty-user.png"
+            src="/SCAN/img/header-empty-user.png"
             alt="Фото пользователя"
             width="32"
             height="32"
