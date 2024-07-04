@@ -10,7 +10,7 @@ export default function User(): JSX.Element {
     (state: RootState) => state.user.loadingLimits
   );
 
-  const onButtonClick = () => {
+  const onButtonClick = (): void => {
     dispatch(logout());
     logout();
   };

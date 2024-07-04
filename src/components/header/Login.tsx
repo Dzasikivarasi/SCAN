@@ -16,7 +16,7 @@ export default function Login({
 }: LoginProps): JSX.Element {
   const navigate = useNavigate();
 
-  const onButtonClick = () => {
+  const onButtonClick = (): void => {
     {
       menuCloseHandler && menuCloseHandler();
     }

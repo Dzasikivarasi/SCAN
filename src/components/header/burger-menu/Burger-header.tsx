@@ -5,7 +5,7 @@ type BurgerHeaderProps = {
 export default function BurgerHeader({
   menuCloseHandler,
 }: BurgerHeaderProps): JSX.Element {
-  const onClickHandler = () => {
+  const onClickHandler = (): void => {
     menuCloseHandler();
   };
 

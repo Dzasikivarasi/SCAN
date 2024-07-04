@@ -39,7 +39,7 @@ export function SearchForm(): JSX.Element {
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  ): void => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
@@ -47,7 +47,7 @@ export function SearchForm(): JSX.Element {
     }));
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
 
     const { inn, results, dateFrom, dateTo } = formData;

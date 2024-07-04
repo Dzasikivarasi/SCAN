@@ -11,7 +11,7 @@ export function ArrowButton({
   buttonClickHandler,
   disabled,
 }: ArrowButtonProps): JSX.Element {
-  const onButtonClick = () => {
+  const onButtonClick = (): void => {
     buttonClickHandler();
   };
 

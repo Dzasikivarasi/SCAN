@@ -5,7 +5,7 @@ type BurgerIconProps = {
 export default function BurgerIcon({
   menuOpenHandler,
 }: BurgerIconProps): JSX.Element {
-  const onClickHandler = () => {
+  const onClickHandler = (): void => {
     menuOpenHandler();
   };
 

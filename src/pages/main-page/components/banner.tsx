@@ -9,7 +9,7 @@ export function Banner(): JSX.Element {
   const authStatus = useSelector((state: RootState) => state.user.authStatus);
   const navigate = useNavigate();
 
-  const buttonClickHandler = () => {
+  const buttonClickHandler = (): void => {
     navigate(AppRoute.Search);
   };
 

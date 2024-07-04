@@ -46,13 +46,13 @@ export function Histogram(): JSX.Element {
     );
   };
 
-  const handleScrollLeft = () => {
+  const handleScrollLeft = (): void => {
     if (tableContainerRef.current) {
       tableContainerRef.current.scrollLeft -= HISTOGRAM_SCROLL_STEP;
     }
   };
 
-  const handleScrollRight = () => {
+  const handleScrollRight = (): void => {
     if (tableContainerRef.current) {
       tableContainerRef.current.scrollLeft += HISTOGRAM_SCROLL_STEP;
     }

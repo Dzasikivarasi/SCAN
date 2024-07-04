@@ -31,7 +31,7 @@ export function AuthForm(): JSX.Element {
     checkButtonDisable();
   }, []);
 
-  const handleInput = () => {
+  const handleInput = (): void => {
     if (loginRef.current && passwordRef.current) {
       setButtonDisable(
         loginRef.current.value === "" || passwordRef.current.value === ""

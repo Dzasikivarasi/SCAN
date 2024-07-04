@@ -13,7 +13,7 @@ export default function Navigation({
   menuCloseHandler,
 }: NavigationProps): JSX.Element {
   const navigate = useNavigate();
-  const onButtonClick = () => {
+  const onButtonClick = (): void => {
     {
       menuCloseHandler && menuCloseHandler();
     }

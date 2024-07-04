@@ -5,11 +5,11 @@ import BurgerIcon from "./burger-icon";
 export default function BurgerMenu(): JSX.Element {
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
 
-  const menuOpenHandler = () => {
+  const menuOpenHandler = (): void => {
     setMenuIsOpen(true);
   };
 
-  const menuCloseHandler = () => {
+  const menuCloseHandler = (): void => {
     setMenuIsOpen(false);
   };
 

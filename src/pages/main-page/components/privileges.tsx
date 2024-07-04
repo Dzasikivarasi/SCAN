@@ -15,7 +15,7 @@ export function Privileges(): JSX.Element {
   const totalItems = PrivilegesItems.length;
 
   useEffect(() => {
-    const updateItemsPerPage = () => {
+    const updateItemsPerPage = (): void => {
       if (window.innerWidth < MOBILE_DESCTOP_FOR_PRIVELEGES) {
         setItemsPerPage(PRIVILEGES_ON_PAGE_MOBILE);
       } else {
@@ -33,13 +33,13 @@ export function Privileges(): JSX.Element {
     setStartIndex(0);
   }, [itemsPerPage]);
 
-  const scrollToNext = () => {
+  const scrollToNext = (): void => {
     if (startIndex + itemsPerPage < totalItems) {
       setStartIndex((prevIndex) => prevIndex + 1);
     }
   };
 
-  const scrollToPrev = () => {
+  const scrollToPrev = (): void => {
     if (startIndex > 0) {
       setStartIndex((prevIndex) => prevIndex - 1);
     }
