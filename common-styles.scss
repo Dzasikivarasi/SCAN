@@ -131,6 +131,13 @@ body {
   }
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
 // хэдер
 .header {
   @include flex-space-between;
@@ -150,7 +157,7 @@ body {
   &_menu {
     @include flex-space-between;
     align-items: center;
-    width: calc(100% * 0.59);
+    width: 59%;
 
     @media (max-width: 1440px) {
       width: auto;
@@ -270,13 +277,21 @@ body {
       }
     }
 
-    &-burger svg:hover {
-      cursor: pointer;
-    }
+    &-burger {
+      display: none;
+      @media (max-width: 1050px) {
+        display: block;
+      }
+      svg:hover {
+        cursor: pointer;
+      }
 
-    &-burger-open {
-      @media (min-width: 1050px) {
+      &-open {
         display: none;
+
+        @media (max-width: 1050px) {
+          display: block;
+        }
       }
     }
 
