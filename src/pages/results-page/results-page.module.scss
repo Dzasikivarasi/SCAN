@@ -278,6 +278,7 @@
           @include text-overflow(12);
           color: $grey;
           font-size: 16px;
+          text-align: left;
 
           @media (max-width: 550px) {
             font-size: 12px;

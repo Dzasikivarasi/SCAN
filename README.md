@@ -3,10 +3,12 @@ SCAN
 
 Использованные технологии
 React, TypeScript, Redux Toolkit, Axios, Date-fns, Dompurify, React Router DOM, React Toastify,
-Sass.
+Sass, Vite.
 
 Адаптивная верстка.
 
 Тестовое логирование:
 Логин: sf_student7
 Пароль: P6VcKNf
+
+\*Возможна нестабильная работа приложения при включенном ВПН.
