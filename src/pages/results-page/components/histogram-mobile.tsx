@@ -8,15 +8,18 @@ import { RootState } from "../../../store/store";
 type HistogramMobileProps = {
   totalDocumentsData: HistogramTypeData | undefined;
   riskFactorsData: HistogramTypeData | undefined;
+  mobileHistogramIndex: number;
 };
 
 export function HistogramMobile({
   totalDocumentsData,
   riskFactorsData,
+  mobileHistogramIndex,
 }: HistogramMobileProps): JSX.Element {
   const loadingHistogram = useSelector(
     (state: RootState) => state.histogram.loading
   );
+
   return (
     <div className={styles["main_results-container-mobile-table"]}>
       <table>
@@ -52,10 +55,16 @@ export function HistogramMobile({
             <tbody>
               {totalDocumentsData && (
                 <tr>
-                  <td>{formatDate(totalDocumentsData.data[0].date)}</td>
-                  <td>{totalDocumentsData.data[0].value}</td>
                   <td>
-                    {riskFactorsData ? riskFactorsData.data[0].value : "0"}
+                    {formatDate(
+                      totalDocumentsData.data[mobileHistogramIndex].date
+                    )}
+                  </td>
+                  <td>{totalDocumentsData.data[mobileHistogramIndex].value}</td>
+                  <td>
+                    {riskFactorsData
+                      ? riskFactorsData.data[mobileHistogramIndex].value
+                      : "0"}
                   </td>
                 </tr>
               )}

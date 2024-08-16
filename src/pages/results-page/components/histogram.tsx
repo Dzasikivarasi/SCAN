@@ -4,7 +4,7 @@ import { RootState } from "../../../store/store";
 import { formatDate, formatWordCount, sumValuesByType } from "../../../utils";
 import { DataCells, HistogramDataPoint } from "../../../types";
 import Loader from "../../../components/loader";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { HistogramMobile } from "./histogram-mobile";
 import { HISTOGRAM_SCROLL_STEP } from "../../../constants";
 
@@ -23,6 +23,7 @@ export function Histogram(): JSX.Element {
   const riskFactorsData = histogramData.data.find(
     (item) => item.histogramType === "riskFactors"
   );
+  const [mobileHistogramIndex, setMobileHistogramIndex] = useState(0);
 
   const renderDataCells: React.FC<DataCells> = ({ data }) => {
     if (!data) return null;
@@ -48,14 +49,28 @@ export function Histogram(): JSX.Element {
 
   const handleScrollLeft = (): void => {
     if (tableContainerRef.current) {
-      tableContainerRef.current.scrollLeft -= HISTOGRAM_SCROLL_STEP;
+      if (tableContainerRef.current.scrollLeft > 0) {
+        tableContainerRef.current.scrollLeft -= HISTOGRAM_SCROLL_STEP;
+      }
     }
+    setMobileHistogramIndex((prev) => Math.max(prev - 1, 0));
   };
 
   const handleScrollRight = (): void => {
     if (tableContainerRef.current) {
-      tableContainerRef.current.scrollLeft += HISTOGRAM_SCROLL_STEP;
+      const maxScrollLeft =
+        tableContainerRef.current.scrollWidth -
+        tableContainerRef.current.clientWidth;
+      if (tableContainerRef.current.scrollLeft < maxScrollLeft) {
+        tableContainerRef.current.scrollLeft += HISTOGRAM_SCROLL_STEP;
+      }
     }
+    setMobileHistogramIndex((prev) =>
+      Math.min(
+        prev + 1,
+        totalDocumentsData ? totalDocumentsData.data.length - 1 : 0
+      )
+    );
   };
 
   return (
@@ -110,6 +125,7 @@ export function Histogram(): JSX.Element {
         <HistogramMobile
           totalDocumentsData={totalDocumentsData}
           riskFactorsData={riskFactorsData}
+          mobileHistogramIndex={mobileHistogramIndex}
         />
         <div
           className={styles["main_results-container-arrow-right"]}
