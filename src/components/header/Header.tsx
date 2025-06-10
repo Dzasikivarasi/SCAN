@@ -1,9 +1,9 @@
-import BurgerMenu from "./burger-menu/burger-menu";
-import Limits from "./limits";
-import Login from "./login";
-import Navigation from "./navigation";
+import BurgerMenu from "./burger-menu/Burger-menu";
+import Limits from "./Limits";
+import Login from "./Login";
+import Navigation from "./Navigation";
 import Logo from "../logo";
-import User from "./user";
+import User from "./User";
 import { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
 import { AuthorizationStatus } from "../../constants";

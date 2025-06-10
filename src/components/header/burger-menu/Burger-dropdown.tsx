@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import Login from "../login";
-import Navigation from "../navigation";
-import BurgerHeader from "./burger-header";
+import Login from "../Login";
+import Navigation from "../Navigation";
+import BurgerHeader from "./Burger-header";
 import { RootState } from "../../../store/store";
 import { AuthorizationStatus } from "../../../constants";
 
